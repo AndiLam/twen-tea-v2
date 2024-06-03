@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+    --background-color: #f5f5f5;
+    --text-color: #333333;
+    --primary-color: #0b9ba5;
+    --secondary-color: #152b43;
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --border-radius: 20px;
+    --search-bg: #ffffff;
+    --info-box-bg: #ffffff;
+    --chart-container-bg: #ffffff;
+    --order-bg: #ffffff;
+    --order-table-th-bg: #f8f8f8;
+    --order-table-td-border: #ddd;
+    --order-table-tr-even-bg: #f9f9f9;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.logo-icon {
+    display: none;
+    opacity: 0; 
+    transform: translateX(-20px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.logo-text {
+    display: inline;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; 
+}
+
+
+.icon-img {
+    width: 1.1rem;
+    height: 1.1rem;
+    object-fit: contain;
+}
+
+.nav {
+    width: 13rem;
+    padding: 1rem;
+    color: var(--text-color);
+    transition: width 1s ease-in-out;
+}
+
+.nav.minimized {
+    width: 4.4rem;
+}
+
+.nav .logo {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.logo-icon img {
+    width: 3.3rem;
+    height: auto;
+}
+
+.nav.minimized .logo-icon {
+    display: inline;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.nav.minimized .logo-text {
+    display: none;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.nav ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.nav ul li {
+    margin: 1rem 0;
+}
+
+.nav ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    transition: background 0.3s;
+}
+
+.nav ul li a:hover {
+    background: var(--primary-color);
+}
+
+.nav ul li a.active {
+    background: var(--primary-color);
+    color: var(--background-color);
+}
+
+.nav .icon {
+    margin-right: 1rem;
+}
+
+.nav.minimized .icon {
+    margin-right: 0;
+}
+
+.nav.minimized .title {
+    display: none;
+}
+
+.nav .dropdown .dropdown-menu {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: translateY(-10px);
+}
+
+.nav .dropdown .dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nav .dropdown .dropdown-menu .theme-button {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.nav .dropdown .dropdown-menu .default-theme {
+    background: #fff;
+    border: 0.1rem solid #ccc;
+}
+
+.nav .dropdown .dropdown-menu .dark-theme {
+    background: #333;
+    border: 0.1rem solid #555;
+}
+
+.nav .dropdown .dropdown-menu .blue-theme {
+    background: #3498db;
+    border: 0.1rem solid #2980b9;
+}
+
+.nav .dropdown .dropdown-menu .green-theme {
+    background: #2ecc71;
+    border: 0.1rem solid #27ae60;
+}
+
+body.dark-theme {
+    --background-color: #2c3e50;
+    --text-color: #ecf0f1;
+    --primary-color: #2c3640;
+    --secondary-color: #d9d0ddda;
+    --search-bg: #34495e;
+    --info-box-bg: #34495e;
+    --chart-container-bg: #34495e;
+    --order-bg: #34495e;
+    --order-table-th-bg: #3b4b5b;
+    --order-table-td-border: #555;
+    --order-table-tr-even-bg: #3e4e5e;
+}
+
+body.blue-theme {
+    --background-color: #d6eaff;
+    --text-color: #2c3e50;
+    --primary-color: #3498db;
+    --secondary-color: #8e44ad;
+    --search-bg: #eaf2f8;
+    --info-box-bg: #eaf2f8;
+    --chart-container-bg: #eaf2f8;
+    --order-bg: #eaf2f8;
+    --order-table-th-bg: #dee9f2;
+    --order-table-td-border: #cce4f7;
+    --order-table-tr-even-bg: #e2f0fb;
+}
+
+body.green-theme {
+    --background-color: #e8f8f5;
+    --text-color: #2c3e50;
+    --primary-color: #2ecc71;
+    --secondary-color: #16a085;
+    --search-bg: #d4efdf;
+    --info-box-bg: #d4efdf;
+    --chart-container-bg: #cff2dd;
+    --order-bg: #d4efdf;
+    --order-table-th-bg: #cbe5d5;
+    --order-table-td-border: #b9dfbb;
+    --order-table-tr-even-bg: #e0f2e9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.main {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.topbar .toggle {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.topbar .search {
+    display: flex;
+    align-items: center;
+    background: var(--search-bg);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 25rem;
+}
+
+.topbar .search input {
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    flex: 1;
+    border-radius: var(--border-radius);
+    background: transparent;
+    color: var(--text-color);
+}
+
+.topbar .search i {
+    margin-left: 0.5rem;
+    color: var(--text-color);
+}
+
+.topbar .user {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.topbar .user img {
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.topbar .user .user-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    z-index: 1;
+}
+
+.topbar .user.active .user-menu {
+    display: block;
+}
+h1 {
+    text-align: center;
+    color: var(--text-color);
+}
+
+.topbar .user .user-menu a {
+    display: block;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: background 0.3s;
+}
+
+.topbar .user .user-menu a:hover {
+    background: var(--background-color);
+    color: #ff0000;
+}
+
+/* Gaya untuk elemen form */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    padding: 3rem;
+    border: 0.01rem solid #ccc;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+/* Gaya untuk elemen label dalam form */
+form label {
+    margin-right: 10px;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+#search::placeholder {
+    color: var(--text-color); /* Change to your desired color */
+}
+
+/* Gaya untuk elemen input, select, dan button dalam form */
+form input, form select, form button {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    background: var(--background-color);
+    font-size: 16px;
+}
+
+/* Gaya untuk elemen button dalam form */
+form button {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Gaya hover untuk elemen button dalam form */
+form button:hover {
+    background-color: var(--primary-color);
+}
+
+.container {
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--text-color);
+    text-align: center;
+}
+
+.chart-container {
+    margin-top: 20px;
+}
+
+#salesChart {
+    width: 100%;
+    height: 37rem;
+}
+
+.info-boxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.info-box {
+    background: var(--info-box-bg);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    flex: 1 1 220px;
+    display: flex;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.info-boxes :hover{
+    background-color: var(--primary-color);
+    transition: 0.1s;
+}
+
+.info-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.info-content {
+    flex: 1;
+}
+
+.info-title {
+    font-weight: 500;
+}
+
+.info-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 0.01rem solid #ddd;
+}
+
+th {
+    background: var(--order-table-th-bg);
+    font-weight: 500;
+}
