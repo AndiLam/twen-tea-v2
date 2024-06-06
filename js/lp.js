@@ -58,14 +58,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    const LocationContainer = document.getElementById('location-container');
-    const uniqStore = new Set();
-    transactions.forEach(transaction => {
-        uniqStore.add(transaction.store_location);
-    });
-    
-    let displayedLoc = 3;
-    const displayLoc = () => {
+    // Load JSON data
+    function loadJSONData() {
+        return fetch('../json/data.json')
+            .then(response => response.json())
+            .catch(error => console.error('Error loading JSON data:', error));
+    }
+
+    // Function to display locations
+    function displayLocations(transactions, uniqStore, displayedLoc) {
+        const LocationContainer = document.getElementById('location-container');
         let counter = 0;
         uniqStore.forEach(category => {
             if (counter < displayedLoc) {
@@ -98,64 +100,73 @@ document.addEventListener('DOMContentLoaded', function() {
                 counter++;
             }
         });
-    };
-    
-    displayLoc();    
+    }
 
-    const LearnMoreButton = document.querySelector('.home .btn');
-    if (LearnMoreButton) {
-        LearnMoreButton.addEventListener('click', function(event) {
-            event.preventDefault();
-            displayedLoc = uniqStore.size; // Show all products
-            LocationContainer.innerHTML = ''; // Clear existing products
-            displayLoc();
+    // Function to display products
+    function displayProducts(transactions, uniqueCategories, displayedProducts) {
+        const productContainer = document.getElementById('product-container');
+        let counter = 0;
+        uniqueCategories.forEach(category => {
+            if (counter < displayedProducts) {
+                const transaction = transactions.find(trans => trans.product_category === category);
+                const productBox = document.createElement('div');
+                productBox.classList.add('product-box');
+                const productTitle = document.createElement('h2');
+                productTitle.textContent = category;
+                const productImage = document.createElement('img');
+                productImage.src = './assets/img/products/' + transaction.product_category + '.jpg'; // Assuming images are named by product_id
+                productImage.alt = category;
+                const productDescription = document.createElement('p');
+                productDescription.textContent = transaction.product_detail;
+                const productButton = document.createElement('a');
+                productButton.href = '#';
+                productButton.classList.add('btn');
+                productButton.textContent = 'Learn More';
+                productBox.appendChild(productTitle);
+                productBox.appendChild(productImage);
+                productBox.appendChild(productDescription);
+                productBox.appendChild(productButton);
+                productContainer.appendChild(productBox);
+                counter++;
+            }
         });
     }
-        // Dynamically load distinct product categories
-        const productContainer = document.getElementById('product-container');
-        const uniqueCategories = new Set();
-        transactions.forEach(transaction => {
-            uniqueCategories.add(transaction.product_category);
-        });
-    
-        let displayedProducts = 9;
-        const displayProducts = () => {
-            let counter = 0;
-            uniqueCategories.forEach(category => {
-                if (counter < displayedProducts) {
-                    const transaction = transactions.find(trans => trans.product_category === category);
-                    const productBox = document.createElement('div');
-                    productBox.classList.add('product-box');
-                    const productTitle = document.createElement('h2');
-                    productTitle.textContent = category;
-                    const productImage = document.createElement('img');
-                    productImage.src = './assets/img/products/' + transaction.product_category + '.jpg'; // Assuming images are named by product_id
-                    productImage.alt = category;
-                    const productDescription = document.createElement('p');
-                    productDescription.textContent = transaction.product_detail;
-                    const productButton = document.createElement('a');
-                    productButton.href = '#';
-                    productButton.classList.add('btn');
-                    productButton.textContent = 'Learn More';
-                    productBox.appendChild(productTitle);
-                    productBox.appendChild(productImage);
-                    productBox.appendChild(productDescription);
-                    productBox.appendChild(productButton);
-                    productContainer.appendChild(productBox);
-                    counter++;
-                }
+
+    loadJSONData().then(transactions => {
+        if (!transactions) return;
+
+        // Unique store locations
+        const uniqStore = new Set(transactions.map(transaction => transaction.store_location));
+        let displayedLoc = 3;
+        displayLocations(transactions, uniqStore, displayedLoc);
+
+        // Event listener for Learn More button
+        const learnMoreButton = document.querySelector('.home .btn');
+        if (learnMoreButton) {
+            learnMoreButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                displayedLoc = uniqStore.size; // Show all locations
+                const LocationContainer = document.getElementById('location-container');
+                LocationContainer.innerHTML = ''; // Clear existing locations
+                displayLocations(transactions, uniqStore, displayedLoc);
             });
-        };
-    
-        displayProducts();
-    
+        }
+
+        // Unique product categories
+        const uniqueCategories = new Set(transactions.map(transaction => transaction.product_category));
+        let displayedProducts = 9;
+        displayProducts(transactions, uniqueCategories, displayedProducts);
+
+        // Event listener for Discover More button
         const discoverMoreButton = document.querySelector('.home .btn');
         if (discoverMoreButton) {
             discoverMoreButton.addEventListener('click', function(event) {
                 event.preventDefault();
                 displayedProducts = uniqueCategories.size; // Show all products
+                const productContainer = document.getElementById('product-container');
                 productContainer.innerHTML = ''; // Clear existing products
-                displayProducts();
+                displayProducts(transactions, uniqueCategories, displayedProducts);
             });
         }
+    });
 });

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" type="text/css" href="../styles/analitik.css">
 </head>
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <section class="filter">
-                <form id="filterForm" onsubmit="event.preventDefault(); filterData();">
+                <form id="filterForm" onsubmit="event.preventDefault();">
                     <div class="form-group">
                         <label for="search">Search:</label>
                         <input type="text" id="search" placeholder="Search">
@@ -53,41 +53,145 @@
                         <label for="endDate">End Date:</label>
                         <input type="date" id="endDate">
                     </div>
-                    <div class="form-group">
-                        <label for="category">Product Category:</label>
-                        <select id="category">
-                            <option value="all">All</option>
-                        </select>
+                    <div class="form-group" onclick="toggleDropdown(event)">
+                        <label>Category:</label>
+                        <div class="dropdown-container" id="category-container">
+                            <span class="selected-value" id="selected-category">Category</span>
+                            <span class="dropdown-arrow">▼</span>
+                            <li id="category-checkboxes">
+                                <!-- Category options will be populated here -->
+                            </li>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="location">Location:</label>
-                        <select id="location">
-                            <option value="all">All</option>
-                        </select>
+                        <label>Location:</label>
+                        <div class="dropdown-container" id="location-container">
+                            <span class="selected-value" id="selected-location">Location</span>
+                            <span class="dropdown-arrow">▼</span>
+                            <li id="location-checkboxes">
+                                <!-- Location options will be populated here -->
+                            </li>
+                        </div>
                     </div>
+                    <div class="form-group">
+                        <label>Period of Days:</label>
+                        <div class="dropdown-container" id="days-container">
+                            <span class="selected-value" id="selected-days">Period of Days</span>
+                            <span class="dropdown-arrow">▼</span>
+                            <li id="days-checkboxes">
+                                <!-- Days options will be populated here -->
+                            </li>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Time Period:</label>
+                        <div class="dropdown-container" id="period-container">
+                            <span class="selected-value" id="selected-period">Time Period</span>
+                            <span class="dropdown-arrow">▼</span>
+                            <li id="period-checkboxes">
+                                <!-- Period options will be populated here -->
+                            </li>
+                        </div>
+                    </div>                                         
                     <button type="submit" id="filterButton">Filter</button>
                 </form>
             </section>
-            <section class="chart">
-                <h1>Sales Analytics</h1>
-                <form id="filterForm">
-                    <div class="container">
-                        <div class="chart-container">
-                            <canvas id="salesChart"></canvas>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="categoryChart"></canvas>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="locationChart"></canvas>
-                        </div>
+            <section class="info-boxes">
+                <div class="info-box">
+                    <div class="info-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+                    <div class="info-content">
+                        <div class="info-title">Total Revenue</div>
+                        <div class="info-value" id="totalRevenue">$</div>
                     </div>
-                </form>
+                </div>
+                <div class="info-box">
+                    <div class="info-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                    <div class="info-content">
+                        <div class="info-title">Total Transactions</div>
+                        <div class="info-value" id="totalTransactions"></div>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <div class="info-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                    <div class="info-content">
+                        <div class="info-title">Total Products</div>
+                        <div class="info-value" id="totalProducts"></div>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <div class="info-icon"><i class="fa-solid fa-store"></i></div>
+                    <div class="info-content">
+                        <div class="info-title">Stores</div>
+                        <div class="info-value" id="totalStores"></div>
+                    </div>
+                </div>
+            </section>
+            <section class="chart">
+                <h1>Chart Analytics</h1>
+                <div class="container">
+                    <div class="chart-container">
+                        <p class="title-sales"><b>Sales by Monthly Period</b></p>
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="chart-container">
+                        <p class="title-sales"><b>Sales Trend by Location</b></p>
+                        <canvas id="salesTrend"></canvas>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="chart-container">
+                        <p class="title-sales"><b>Sales Percentage by Location</b></p>
+                        <canvas id="salesPercentage"></canvas>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="chart-container">
+                        <p class="title-sales"><b>Product Contribution</b></p>
+                        <canvas id="product"></canvas>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="chart-container">
+                        <p class="title-sales"><b>Sales by Time Categories</b></p>
+                        <canvas id="salesTime"></canvas>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="chart-container">
+                        <p class="title-sales"><b>Sales by Price Categories</b></p>
+                        <canvas id="salesPrice"></canvas>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="chart-container">
+                        <p class="title-sales"><b>Analysis of Sales, Sold Items, and Total Transaction per Product Category</b></p>
+                        <canvas id="analysis"></canvas>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="chart-container">
+                        <p class="title-sales"><b>Sales Growth Analysis</b></p>
+                        <table id="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Year</th>
+                                    <th>Category</th>
+                                    <th>Total Transaction Value</th>
+                                    <th>Total Transaction Value (Last Month)</th>
+                                    <th>Average Sales Growth</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
             </section>
         </main>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
-    <script src="../js/transaction.js" defer></script>
     <script src="../js/analitik.js" defer></script>
-    <script src="../js/dashboard.js" defer></script>
 </body>
 </html>

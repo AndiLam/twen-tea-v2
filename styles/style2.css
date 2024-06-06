@@ -349,6 +349,102 @@ form button:hover {
     background-color: var(--primary-color);
 }
 
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: var(--background-color);
+    cursor: pointer;
+}
+
+.dropdown-container .selected-value {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.dropdown-container .dropdown-arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.dropdown-container li {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    display: none; /* Initially hidden */
+    z-index: 10; /* Ensure it's on top */
+}
+
+.dropdown-container li {
+    list-style: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.dropdown-container li:hover {
+    background-color: #eee;
+}
+
+.dropdown-container.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-checkbox {
+    position: relative;
+    display: inline-block;
+  }
+  
+.dropdown-checkbox ul li {
+    margin-bottom: 10px;
+  }
+  
+.dropdown-checkbox li label {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    cursor: pointer;
+  }
+  
+.dropdown-checkbox li label:hover {
+    background-color: #eee;
+  }
+  
+.dropdown-checkbox li input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+.dropdown-checkbox:hover .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+  
+.dropdown-arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: rotate(0deg);
+    transition: transform 0.3s;
+  }
+
+.filter.dropdown-arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+}
+
 .container {
     margin: 0 auto;
 }
@@ -356,15 +452,6 @@ form button:hover {
 h1 {
     color: var(--text-color);
     text-align: center;
-}
-
-.chart-container {
-    margin-top: 20px;
-}
-
-#salesChart {
-    width: 100%;
-    height: 37rem;
 }
 
 .info-boxes {
@@ -406,6 +493,15 @@ h1 {
 .info-value {
     font-size: 1.5rem;
     font-weight: 700;
+}
+
+.chart-container {
+    margin-top: 20px;
+}
+
+#salesChart {
+    width: 100%;
+    height: 37rem;
 }
 
 table {
