@@ -224,11 +224,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             updateTotals(filteredTransactions);
             SalesChart(filteredTransactions);
+            SalesTrendChart(filteredTransactions);
             MapChart(filteredTransactions);
             ProductChart(filteredTransactions);
-            SalesTimeChart(filteredTransactions)
-            SalesPriceChart(filteredTransactions)
-            AnalysisChart(filteredTransactions)
+            SalesTimeChart(filteredTransactions);
+            SalesPriceChart(filteredTransactions);
+            AnalysisChart(filteredTransactions);
+            SalesGrowthChart(filteredTransactions);
         }
 
         // Event listeners for filtering
@@ -373,6 +375,111 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
 
+        //trend location
+        const ctxx = document.getElementById("salesTrend").getContext("2d");
+        let salesTrendChart;
+      
+        function SalesTrendChart(transactions) {
+          const processedData = {};
+          transactions.forEach((item) => {
+            const date = item.transaction_date;
+            const location = item.store_location;
+            const value = parseFloat(item.transaction_value);
+      
+            if (!processedData[date]) {
+              processedData[date] = {};
+            }
+            if (!processedData[date][location]) {
+              processedData[date][location] = 0;
+            }
+      
+            processedData[date][location] += value;
+          });
+      
+          const labels = [];
+          const hellsKitchenData = [];
+          const astoriaData = [];
+          const lowerManhattanData = [];
+      
+          // Generate labels for the X-axis and data for the Y-axis
+          for (let d = new Date("2023-01-01"); d <= new Date("2023-06-30"); d.setDate(d.getDate() + 1)) {
+            const dateStr = d.toISOString().split("T")[0];
+            labels.push(dateStr);
+            hellsKitchenData.push(processedData[dateStr] ? processedData[dateStr]["Hell's Kitchen"] || 0 : 0);
+            astoriaData.push(processedData[dateStr] ? processedData[dateStr]["Astoria"] || 0 : 0);
+            lowerManhattanData.push(processedData[dateStr] ? processedData[dateStr]["Lower Manhattan"] || 0 : 0);
+          }
+      
+          const datasets = [
+            {
+              label: "Hell's Kitchen",
+              data: hellsKitchenData,
+              borderColor: "#0072F0",
+              backgroundColor: "rgba(0, 0, 255, 0.1)",
+              fill: false,
+            },
+            {
+              label: "Astoria",
+              data: astoriaData,
+              borderColor: "#00B6CB",
+              backgroundColor: "rgba(0, 255, 255, 0.1)",
+              fill: false,
+            },
+            {
+              label: "Lower Manhattan",
+              data: lowerManhattanData,
+              borderColor: "#F10096",
+              backgroundColor: "rgba(255, 0, 255, 0.1)",
+              fill: false,
+            },
+          ];
+      
+          if (salesTrendChart) {
+            salesTrendChart.data.labels = labels;
+            salesTrendChart.data.datasets = datasets;
+            salesTrendChart.update();
+          } else {
+            salesTrendChart = new Chart(ctxx, {
+              type: "line",
+              data: {
+                labels: labels,
+                datasets: datasets,
+              },
+              options: {
+                responsive: true,
+                scales: {
+                  x: {
+                    title: {
+                      display: true,
+                      text: "Date",
+                    },
+                  },
+                  y: {
+                    title: {
+                      display: true,
+                      text: "Transaction Value",
+                    },
+                    beginAtZero: true,
+                  },
+                },
+                plugins: {
+                  legend: {
+                    display: true,
+                    position: "top",
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: function (context) {
+                        return context.dataset.label + ": $" + context.raw.toFixed(2);
+                      },
+                    },
+                  },
+                },
+              },
+            });
+          }
+        }
+
         // sales percentage
         const ctx1 = document.getElementById("salesPercentage").getContext("2d");
         let mapChart;
@@ -398,7 +505,7 @@ document.addEventListener("DOMContentLoaded", function() {
             mapChart.update();
           } else {
             mapChart = new Chart(ctx1, {
-              type: "doughnut",
+              type: "pie",
               data: {
                 labels: labels,
                 datasets: [
