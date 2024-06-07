@@ -848,69 +848,68 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch((error) => console.error("Error fetching data:", error));
 
         function SalesGrowthChart(transactions) {
-            const groupedData = {};
-        
-            transactions.forEach((item) => {
+          const groupedData = {};
+      
+          transactions.forEach((item) => {
               const year = new Date(item.transaction_date).getFullYear();
               const category = item.product_category;
               const transactionValue = parseFloat(item.transaction_value);
               const transactionValueLm = parseFloat(item.transaction_value_lm);
               const salesGrowth = parseFloat(item.sales_growth);
-        
+      
               if (!groupedData[year]) {
-                groupedData[year] = {};
+                  groupedData[year] = {};
               }
-        
+      
               if (!groupedData[year][category]) {
-                groupedData[year][category] = {
-                  totalTransactionValue: 0,
-                  totalTransactionValueLm: 0,
-                  totalSalesGrowth: 0,
-                  salesGrowthCount: 0,
-                };
+                  groupedData[year][category] = {
+                      totalTransactionValue: 0,
+                      totalTransactionValueLm: 0,
+                      totalSalesGrowth: 0,
+                      salesGrowthCount: 0,
+                  };
               }
-        
+      
               groupedData[year][category].totalTransactionValue += transactionValue;
               groupedData[year][category].totalTransactionValueLm += transactionValueLm;
               if (!isNaN(salesGrowth)) {
-                groupedData[year][category].totalSalesGrowth += salesGrowth;
-                groupedData[year][category].salesGrowthCount += 1;
+                  groupedData[year][category].totalSalesGrowth += salesGrowth;
+                  groupedData[year][category].salesGrowthCount += 1;
               }
-            });
-        
-            const tableBody = document.querySelector("#data-table tbody");
-            tableBody.innerHTML = ""; // Clear the table body before adding new rows
-        
-            for (const year in groupedData) {
+          });
+      
+          const tableBody = document.querySelector("#data-table tbody");
+          tableBody.innerHTML = ""; // Clear the table body before adding new rows
+      
+          for (const year in groupedData) {
               for (const category in groupedData[year]) {
-                const row = document.createElement("tr");
-        
-                const yearCell = document.createElement("td");
-                yearCell.textContent = year;
-                row.appendChild(yearCell);
-        
-                const categoryCell = document.createElement("td");
-                categoryCell.textContent = category;
-                row.appendChild(categoryCell);
-        
-                const totalValueCell = document.createElement("td");
-                totalValueCell.textContent = groupedData[year][category].totalTransactionValue.toFixed(2);
-                row.appendChild(totalValueCell);
-        
-                const totalValueLmCell = document.createElement("td");
-                totalValueLmCell.textContent = groupedData[year][category].totalTransactionValueLm.toFixed(2);
-                row.appendChild(totalValueLmCell);
-        
-                const averageSalesGrowthCell = document.createElement("td");
-                const avgSalesGrowth = groupedData[year][category].salesGrowthCount === 0 ? 0 : groupedData[year][category].totalSalesGrowth / groupedData[year][category].salesGrowthCount;
-                averageSalesGrowthCell.textContent = avgSalesGrowth.toFixed(2);
-                row.appendChild(averageSalesGrowthCell);
-        
-                tableBody.appendChild(row);
+                  const row = document.createElement("tr");
+      
+                  const yearCell = document.createElement("td");
+                  yearCell.textContent = year;
+                  row.appendChild(yearCell);
+      
+                  const categoryCell = document.createElement("td");
+                  categoryCell.textContent = category;
+                  row.appendChild(categoryCell);
+      
+                  const totalValueCell = document.createElement("td");
+                  totalValueCell.textContent = groupedData[year][category].totalTransactionValue.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                  row.appendChild(totalValueCell);
+      
+                  const totalValueLmCell = document.createElement("td");
+                  totalValueLmCell.textContent = groupedData[year][category].totalTransactionValueLm.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                  row.appendChild(totalValueLmCell);
+      
+                  const averageSalesGrowthCell = document.createElement("td");
+                  const avgSalesGrowth = groupedData[year][category].salesGrowthCount === 0 ? 0 : groupedData[year][category].totalSalesGrowth / groupedData[year][category].salesGrowthCount;
+                  averageSalesGrowthCell.textContent = avgSalesGrowth.toFixed(2) + "%";
+                  row.appendChild(averageSalesGrowthCell);
+      
+                  tableBody.appendChild(row);
               }
-            }
           }
-          
+      }                
         // logout
         window.confirmLogout = function(event) {
             event.preventDefault();
