@@ -292,6 +292,7 @@ document.addEventListener("DOMContentLoaded", function() {
       SalesTimeChart(filteredTransactions);
       SalesPriceChart(filteredTransactions);
       AnalysisChart(filteredTransactions);
+    //   filterGrowthChart(filteredTransactions, yearFilter, monthFilter);
   }
 
   // Function to update total values
@@ -855,68 +856,99 @@ document.addEventListener("DOMContentLoaded", function() {
       }
   }
 
-  // Sales growth table
+  // menampilkan data sales growth
   function SalesGrowthChart(transactions) {
-      const groupedData = {};
+    const groupedData = {};
 
-      transactions.forEach((item) => {
-          const year = new Date(item.transaction_date).getFullYear();
-          const category = item.product_category;
-          const transactionValue = parseFloat(item.transaction_value);
-          const transactionValueLm = parseFloat(item.transaction_value_lm);
-          const salesGrowth = parseFloat(item.sales_growth);
+    transactions.forEach((item) => {
+        const date = new Date(item.transaction_date);
+        const year = date.getFullYear();
+        const month = date.getMonth(); // Mendapatkan indeks bulan (dimulai dari 0 untuk Januari)
+        const category = item.product_category;
+        const transactionValue = parseFloat(item.transaction_value);
+        const transactionValueLm = parseFloat(item.transaction_value_lm);
 
-          if (!groupedData[year]) {
-              groupedData[year] = {};
-          }
+        const monthYear = `${year}-${month}`;
 
-          if (!groupedData[year][category]) {
-              groupedData[year][category] = {
-                  totalTransactionValue: 0,
-                  totalTransactionValueLm: 0,
-                  totalSalesGrowth: 0,
-                  salesGrowthCount: 0,
-              };
-          }
+        if (!groupedData[monthYear]) {
+            groupedData[monthYear] = {};
+        }
 
-          groupedData[year][category].totalTransactionValue += transactionValue;
-          groupedData[year][category].totalTransactionValueLm += transactionValueLm;
-          if (!isNaN(salesGrowth)) {
-              groupedData[year][category].totalSalesGrowth += salesGrowth;
-              groupedData[year][category].salesGrowthCount += 1;
-          }
-      });
+        if (!groupedData[monthYear][category]) {
+            groupedData[monthYear][category] = {
+                totalTransactionValue: 0,
+                totalTransactionValueLm: 0,
+            };
+        }
 
-      const tableBody = document.querySelector("#data-table tbody");
-      tableBody.innerHTML = ""; // Clear the table body before adding new rows
+        groupedData[monthYear][category].totalTransactionValue += transactionValue;
+        groupedData[monthYear][category].totalTransactionValueLm += transactionValueLm;
+    });
 
-      for (const year in groupedData) {
-          for (const category in groupedData[year]) {
-              const row = document.createElement("tr");
+    // Mengurutkan kunci bulan
+    const sortedMonths = Object.keys(groupedData).sort((a, b) => {
+        const [yearA, monthA] = a.split('-');
+        const [yearB, monthB] = b.split('-');
+        return new Date(yearA, monthA).getTime() - new Date(yearB, monthB).getTime();
+    });
 
-              const yearCell = document.createElement("td");
-              yearCell.textContent = year;
-              row.appendChild(yearCell);
+    const tableBody = document.querySelector("#data-table tbody");
 
-              const categoryCell = document.createElement("td");
-              categoryCell.textContent = category;
-              row.appendChild(categoryCell);
+    // Membuat baris tabel berdasarkan bulan yang diurutkan
+    sortedMonths.forEach((monthYear) => {
+        for (const category in groupedData[monthYear]) {
+            const row = document.createElement("tr");
 
-              const totalValueCell = document.createElement("td");
-              totalValueCell.textContent = groupedData[year][category].totalTransactionValue.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 });
-              row.appendChild(totalValueCell);
+            const [year, month] = monthYear.split("-");
+            const monthName = new Date(year, month).toLocaleString('default', { month: 'long' });
 
-              const totalValueLmCell = document.createElement("td");
-              totalValueLmCell.textContent = groupedData[year][category].totalTransactionValueLm.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 });
-              row.appendChild(totalValueLmCell);
+            const yearCell = document.createElement("td");
+            yearCell.textContent = year;
+            row.appendChild(yearCell);
 
-              const averageSalesGrowthCell = document.createElement("td");
-              const avgSalesGrowth = groupedData[year][category].salesGrowthCount === 0 ? 0 : groupedData[year][category].totalSalesGrowth / groupedData[year][category].salesGrowthCount;
-              averageSalesGrowthCell.textContent = avgSalesGrowth.toFixed(2) + "%";
-              row.appendChild(averageSalesGrowthCell);
+            const monthCell = document.createElement("td");
+            monthCell.textContent = monthName;
+            row.appendChild(monthCell);
 
-              tableBody.appendChild(row);
-          }
-      }
-  }
+            const categoryCell = document.createElement("td");
+            categoryCell.textContent = category;
+            row.appendChild(categoryCell);
+
+            const totalValueCell = document.createElement("td");
+            totalValueCell.textContent = groupedData[monthYear][category].totalTransactionValue.toFixed(2);
+            row.appendChild(totalValueCell);
+
+            const totalValueLmCell = document.createElement("td");
+            totalValueLmCell.textContent = groupedData[monthYear][category].totalTransactionValueLm.toFixed(2);
+            row.appendChild(totalValueLmCell);
+
+            const averageSalesGrowthCell = document.createElement("td");
+            const totalTransactionValueLm = groupedData[monthYear][category].totalTransactionValueLm;
+            const salesGrowth = totalTransactionValueLm !== 0 ? (groupedData[monthYear][category].totalTransactionValue - totalTransactionValueLm) / totalTransactionValueLm : 0;
+            averageSalesGrowthCell.textContent = (salesGrowth * 100).toFixed(2) + "%";
+            row.appendChild(averageSalesGrowthCell);
+
+            tableBody.appendChild(row);
+        }
+    });
+}
+
+// function filterGrowthChart(transactions, yearFilter, monthFilter) {
+//   const filteredGrowthData = transactions.filter((item) => {
+//     const date = new Date(item.transaction_date);
+//     const year = date.getFullYear();
+//     const month = date.getMonth();
+
+//     if (yearFilter !== "all" && year !== parseInt(yearFilter)) return false;
+//     if (monthFilter !== "all" && month !== parseInt(monthFilter) - 1) return false;
+
+//     return true;
+//   });
+
+//   // Clear the table body before rendering new data
+//   const tableBody = document.querySelector("#data-table tbody");
+//   tableBody.innerHTML = "";
+
+//   SalesGrowthChart(filteredGrowthData);
+// }
 });
