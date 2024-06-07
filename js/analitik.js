@@ -840,6 +840,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         //table growth
+        fetch("../json/sales-growth.json")
+        .then((response) => response.json())
+        .then((data) => {
+          SalesGrowthChart(data);
+        })
+        .catch((error) => console.error("Error fetching data:", error));
+
         function SalesGrowthChart(transactions) {
             const groupedData = {};
         
@@ -903,13 +910,6 @@ document.addEventListener("DOMContentLoaded", function() {
               }
             }
           }
-
-          fetch("../json/sales-growth.json")
-          .then((response) => response.json())
-          .then((data) => {
-            SalesGrowthChart(data);
-          })
-          .catch((error) => console.error("Error fetching data:", error));
           
         // logout
         window.confirmLogout = function(event) {
