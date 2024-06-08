@@ -47,14 +47,16 @@ body {
 }
 
 .nav {
-    width: 13rem;
-    padding: 1rem;
+    width: 9rem;
+    margin-top: 1.34rem;
+    padding: 0.3rem;
     color: var(--text-color);
-    transition: width 1s ease-in-out;
+    transition: width 1.1s ease-in-out;
 }
 
 .nav.minimized {
-    width: 4.4rem;
+    width: 3rem;
+    margin-top: 0rem;
 }
 
 .nav .logo {
@@ -516,14 +518,21 @@ th {
     padding: 0.5rem 1rem;
     border: none;
     background: var(--primary-color);
-    color: #fff;
+    color: var(--text-color);
     border-radius: var(--border-radius);
     cursor: pointer;
     transition: background 0.3s;
 }
 
+.pagination .active{
+    background: var(--secondary-color);
+    color: #dcdcdc;
+}
+
 .pagination button:hover {
-    background: darken(var(--primary-color), 10%);
+    background: var(--secondary-color);
+    color: #dcdcdc;
+
 }
 
 .pagination button:disabled {

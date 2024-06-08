@@ -6,10 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const locationCheck = document.getElementById('location-checkboxes');
     const daysCheck = document.getElementById('days-checkboxes');
     const periodCheck = document.getElementById('period-checkboxes');
-    const categoryContainer = document.getElementById('category-container');
-    const locationContainer = document.getElementById('location-container');
-    const daysContainer = document.getElementById('days-container');
-    const periodContainer = document.getElementById('period-container');
     const filterButton = document.getElementById("filterButton");
     const userElement = document.querySelector(".user");
     const sidebar = document.getElementById("sidebar");
@@ -286,22 +282,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // Toggle dropdown menu
       window.toggleDropdown = function(event) {
-        const dropdownContainer = event.currentTarget.nextElementSibling;
-        const dropdownMenu = dropdownContainer.querySelector('li');
-        if (dropdownMenu.classList.contains('show')) {
-          dropdownMenu.classList.remove('show');
-          dropdownContainer.classList.remove('active');
-        } else {
-          const otherDropdownContainers = document.querySelectorAll('.dropdown-container');
-          otherDropdownContainers.forEach((container) => {
-            const otherDropdownMenu = container.querySelector('li');
-            otherDropdownMenu.classList.remove('show');
-            container.classList.remove('active');
-          });
-          dropdownMenu.classList.add('show');
-          dropdownContainer.classList.add('active');
-        }
-      };
+        event.preventDefault();
+        const dropdownMenu = event.currentTarget.nextElementSibling;
+        dropdownMenu.classList.toggle('show');
+    };
 
     // Function to update total values
     function updateTotals(transactions) {
