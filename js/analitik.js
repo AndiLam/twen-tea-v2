@@ -351,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         label: 'Transaction Quantity',
                         type: 'line',
                         data: transactionQuantitiesByMonth,
-                        backgroundColor: '#4caf50',
+                        backgroundColor: '#8a5ae8',
                         borderColor: 'rgba(153, 102, 255, 1)',
                         borderWidth: 1,
                         yAxisID: 'value-axis'
@@ -629,65 +629,78 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
   
-    // Sales time
-    const ctx3 = document.getElementById("salesTime").getContext("2d");
-    let salesTimeChart;
-  
-    function SalesTimeChart(transactions) {
-        const timeCategories = ["Pagi", "Siang", "Sore"];
-        const monthValues = ["January", "February", "March", "April", "May", "June"];
-  
-        const salesByCategory = timeCategories.map((category) => {
-            return monthValues.map((month) => {
-                return transactions
-                    .filter((item) => item.periode_waktu === category && item.periode_bulanan === month)
-                    .reduce((total, item) => total + parseFloat(item.unit_price), 0);
-            });
+// Sales time
+const ctx3 = document.getElementById("salesTime").getContext("2d");
+let salesTimeChart;
+
+function SalesTimeChart(transactions) {
+    // Mapping object to translate 'periode_harian' values
+    const timeTranslation = {
+        "Pagi": "Morning",
+        "Siang": "Afternoon",
+        "Sore": "Night"
+    };
+
+    // Translate 'periode_harian' values
+    const translatedTransactions = transactions.map(transaction => ({
+        ...transaction,
+        periode_waktu: timeTranslation[transaction.periode_waktu]
+    }));
+
+    const timeCategories = ["Morning", "Afternoon", "Night"];
+    const monthValues = ["January", "February", "March", "April", "May", "June"];
+
+    const salesByCategory = timeCategories.map((category) => {
+        return monthValues.map((month) => {
+            return translatedTransactions
+                .filter((item) => item.periode_waktu === category && item.periode_bulanan === month)
+                .reduce((total, item) => total + parseFloat(item.unit_price), 0);
         });
-  
-        const datasets = salesByCategory.map((categoryData, index) => {
-            return {
-                label: timeCategories[index],
-                data: categoryData,
-                borderColor: ["#00b6cb", "#0072f0", "#f10096"][index],
-                backgroundColor: "transparent",
-                fill: false,
-                tension: 0.1,
-            };
-        });
-  
-        if (salesTimeChart) {
-            salesTimeChart.data.labels = monthValues;
-            salesTimeChart.data.datasets = datasets;
-            salesTimeChart.update();
-        } else {
-            salesTimeChart = new Chart(ctx3, {
-                type: "line",
-                data: {
-                    labels: monthValues,
-                    datasets: datasets,
-                },
-                options: {
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: "Month",
-                            },
+    });
+
+    const datasets = salesByCategory.map((categoryData, index) => {
+        return {
+            label: timeCategories[index],
+            data: categoryData,
+            borderColor: ["#00b6cb", "#0072f0", "#f10096"][index],
+            backgroundColor: "transparent",
+            fill: false,
+            tension: 0.1,
+        };
+    });
+
+    if (salesTimeChart) {
+        salesTimeChart.data.labels = monthValues;
+        salesTimeChart.data.datasets = datasets;
+        salesTimeChart.update();
+    } else {
+        salesTimeChart = new Chart(ctx3, {
+            type: "line",
+            data: {
+                labels: monthValues,
+                datasets: datasets,
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: "Month",
                         },
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: "Unit Price",
-                            },
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: "Unit Price",
                         },
                     },
                 },
+            },
             });
-        }
+        }   
     }
-  
+
     // Sales price
     const ctx4 = document.getElementById("salesPrice").getContext("2d");
     let salesPriceChart;
