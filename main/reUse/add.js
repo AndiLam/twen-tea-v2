@@ -42,46 +42,47 @@ var reuse =
                     '<label for="endDate">End Date:</label>'+
                     '<input type="date" id="endDate">'+
                 '</div>'+
-                '<div class="form-group" onclick="toggleDropdown(event)">'+
-                    '<label>Category:</label>'+
-                    '<div class="dropdown-container" id="category-container">'+
-                        '<span class="selected-value" id="selected-category">Category</span>'+
-                        '<span class="dropdown-arrow">▼</span>'+
-                        '<li id="category-checkboxes">'+
-                            '<!-- Category options will be populated here -->'+
-                        '</li>'+
-                    '</div>'+
-                '</div>'+
+
                 '<div class="form-group">'+
-                    '<label>Location:</label>'+
-                    '<div class="dropdown-container" id="location-container">'+
-                        '<span class="selected-value" id="selected-location">Location</span>'+
-                        '<span class="dropdown-arrow">▼</span>'+
-                        '<li id="location-checkboxes">'+
-                            '<!-- Location options will be populated here -->'+
-                        '</li>'+
-                    '</div>'+
+                '<label>Category:</label>'+
+                '<div class="dropdown-container" id="category-container">'+
+                    '<span class="selected-value" id="selected-category">Category</span>'+
+                    '<span class="dropdown-arrow">▼</span>'+
                 '</div>'+
-                '<div class="form-group">'+
-                    '<label>Period of Days:</label>'+
-                    '<div class="dropdown-container" id="days-container">'+
-                        '<span class="selected-value" id="selected-days">Period of Days</span>'+
-                        '<span class="dropdown-arrow">▼</span>'+
-                        '<li id="days-checkboxes">'+
-                            '<!-- Days options will be populated here -->'+
-                        '</li>'+
-                    '</div>'+
+                '<ul id="category-checkboxes" class="dropdown-list" style="display:none;">'+
+                    '<!-- Category options will be populated here -->'+
+                '</ul>'+
+            '</div>'+
+            '<div class="form-group">'+
+                '<label>Location:</label>'+
+                '<div class="dropdown-container" id="location-container">'+
+                    '<span class="selected-value" id="selected-location">Location</span>'+
+                    '<span class="dropdown-arrow">▼</span>'+
                 '</div>'+
-                '<div class="form-group">'+
-                    '<label>Time Period:</label>'+
-                    '<div class="dropdown-container" id="period-container">'+
-                        '<span class="selected-value" id="selected-period">Time Period</span>'+
-                        '<span class="dropdown-arrow">▼</span>'+
-                        '<li id="period-checkboxes">'+
-                            '<!-- Period options will be populated here -->'+
-                        '</li>'+
-                    '</div>'+
-                '</div>'+                                       
+                '<ul id="location-checkboxes" class="dropdown-list" style="display:none;">'+
+                    '<!-- Location options will be populated here -->'+
+                '</ul>'+
+            '</div>'+
+            '<div class="form-group">'+
+                '<label>Period of Days:</label>'+
+                '<div class="dropdown-container" id="days-container">'+
+                    '<span class="selected-value" id="selected-days">Period of Days</span>'+
+                    '<span class="dropdown-arrow">▼</span>'+
+                '</div>'+
+                '<ul id="days-checkboxes" class="dropdown-list" style="display:none;">'+
+                    '<!-- Days options will be populated here -->'+
+                '</ul>'+
+            '</div>'+
+            '<div class="form-group">'+
+                '<label>Time Period:</label>'+
+                '<div class="dropdown-container" id="period-container">'+
+                    '<span class="selected-value" id="selected-period">Time Period</span>'+
+                    '<span class="dropdown-arrow">▼</span>'+
+                '</div>'+
+                '<ul id="period-checkboxes" class="dropdown-list" style="display:none;">'+
+                    '<!-- Period options will be populated here -->'+
+                '</ul>'+
+            '</div>'+                                       
                 '<button type="submit" id="filterButton">Filter</button>'+
             '</form>'+
         '</section>'+

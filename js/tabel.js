@@ -50,14 +50,14 @@ document.addEventListener("DOMContentLoaded", function() {
         const locations = new Set();
         const days = new Set();
         const period = new Set();
-
+    
         transactions.forEach(transaction => {
             categories.add(transaction.product_category);
             locations.add(transaction.store_location);
             days.add(transaction.periode_hari);
             period.add(transaction.periode_waktu);
         });
-
+    
         // Sort categories and locations in alphabetical order
         const sortedCategories = Array.from(categories).sort((a, b) => a.localeCompare(b));
         const sortedLocations = Array.from(locations).sort((a, b) => a.localeCompare(b));
@@ -73,59 +73,87 @@ document.addEventListener("DOMContentLoaded", function() {
             const periodOrder = ['Pagi', 'Siang', 'Sore'];
             return periodOrder.indexOf(a) - periodOrder.indexOf(b);
         });
-
+    
         sortedCategories.forEach(category => {
             const label = document.createElement('label');
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.value = category;
             checkbox.checked = true; // Default to checked, adjust as needed
-
+    
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode(category));
             categoryCheck.appendChild(label);
         });
-
+    
         sortedLocations.forEach(location => {
             const label = document.createElement('label');
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.value = location;
             checkbox.checked = true; // Default to checked, adjust as needed
-
+    
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode(location));
             locationCheck.appendChild(label);
         });
-
+    
         sortedDays.forEach(days => {
             const label = document.createElement('label');
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.value = days;
             checkbox.checked = true; // Default to checked, adjust as needed
-
+    
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode(days));
             daysCheck.appendChild(label);
         });
-        
+    
         sortedPeriod.forEach(period => {
             const label = document.createElement('label');
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.value = period;
             checkbox.checked = true; // Default to checked, adjust as needed
-
+    
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode(period));
             periodCheck.appendChild(label);
         });
+    
+        document.getElementById('category-container').addEventListener('click', function(event) {
+            if (event.target.tagName === 'INPUT') return;
+            this.classList.toggle('active');
+            const checkboxes = document.getElementById('category-checkboxes');
+            checkboxes.style.display = checkboxes.style.display === 'none' ? 'block' : 'none';
+        });
+    
+        document.getElementById('location-container').addEventListener('click', function(event) {
+            if (event.target.tagName === 'INPUT') return;
+            this.classList.toggle('active');
+            const checkboxes = document.getElementById('location-checkboxes');
+            checkboxes.style.display = checkboxes.style.display === 'none' ? 'block' : 'none';
+        });
+    
+        document.getElementById('days-container').addEventListener('click', function(event) {
+            if (event.target.tagName === 'INPUT') return;
+            this.classList.toggle('active');
+            const checkboxes = document.getElementById('days-checkboxes');
+            checkboxes.style.display = checkboxes.style.display === 'none' ? 'block' : 'none';
+        });
+    
+        document.getElementById('period-container').addEventListener('click', function(event) {
+            if (event.target.tagName === 'INPUT') return;
+            this.classList.toggle('active');
+            const checkboxes = document.getElementById('period-checkboxes');
+            checkboxes.style.display = checkboxes.style.display === 'none' ? 'block' : 'none';
+        });
     }
-
+    
     // Get selected categories
     function getSelectedCategories() {
-        const checkboxes = categoryCheck.querySelectorAll('input[type="checkbox"]');
+        const checkboxes = document.querySelectorAll('#category-checkboxes input[type="checkbox"]');
         const selectedCategories = [];
         checkboxes.forEach(checkbox => {
             if (checkbox.checked && checkbox.value !== 'all') {
@@ -134,10 +162,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         return selectedCategories.length ? selectedCategories : ['all'];
     }
-
+    
     // Get selected locations
     function getSelectedLocations() {
-        const checkboxes = locationCheck.querySelectorAll('input[type="checkbox"]');
+        const checkboxes = document.querySelectorAll('#location-checkboxes input[type="checkbox"]');
         const selectedLocations = [];
         checkboxes.forEach(checkbox => {
             if (checkbox.checked && checkbox.value !== 'all') {
@@ -146,10 +174,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         return selectedLocations.length ? selectedLocations : ['all'];
     }
-
+    
     // Get selected days
     function getSelectedDays() {
-        const checkboxes = daysCheck.querySelectorAll('input[type="checkbox"]');
+        const checkboxes = document.querySelectorAll('#days-checkboxes input[type="checkbox"]');
         const selectedDays = [];
         checkboxes.forEach(checkbox => {
             if (checkbox.checked && checkbox.value !== 'all') {
@@ -158,10 +186,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         return selectedDays.length ? selectedDays : ['all'];
     }
-
+    
     // Get selected period
     function getSelectedPeriod() {
-        const checkboxes = periodCheck.querySelectorAll('input[type="checkbox"]');
+        const checkboxes = document.querySelectorAll('#period-checkboxes input[type="checkbox"]');
         const selectedPeriod = [];
         checkboxes.forEach(checkbox => {
             if (checkbox.checked && checkbox.value !== 'all') {
@@ -170,35 +198,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         return selectedPeriod.length ? selectedPeriod : ['all'];
     }
-
-    // Container category
-    categoryContainer.addEventListener('click', function() {
-        categoryContainer.classList.toggle('active');
-        const checkboxes = categoryContainer.querySelector('#category-checkboxes');
-        checkboxes.style.display = checkboxes.style.display === 'none'? 'block' : 'none';
-    });
-
-    // Container location
-    locationContainer.addEventListener('click', function() {
-        locationContainer.classList.toggle('active');
-        const checkboxes = locationContainer.querySelector('#location-checkboxes');
-        checkboxes.style.display = checkboxes.style.display === 'none'? 'block' : 'none';
-    });
-
-    // Container category
-    daysContainer.addEventListener('click', function() {
-        daysContainer.classList.toggle('active');
-        const checkboxes = daysContainer.querySelector('#days-checkboxes');
-        checkboxes.style.display = checkboxes.style.display === 'none'? 'block' : 'none';
-    });
-
-    // Container category
-    periodContainer.addEventListener('click', function() {
-        periodContainer.classList.toggle('active');
-        const checkboxes = periodContainer.querySelector('#period-checkboxes');
-        checkboxes.style.display = checkboxes.style.display === 'none'? 'block' : 'none';
-    });
-
+  
     // Filter transactions based on user input
     function filterTransactions() {
         const startDate = startDateInput.value ? new Date(startDateInput.value) : null;
@@ -284,12 +284,24 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Toggle dropdown menu
-    window.toggleDropdown = function(event) {
-        event.preventDefault();
-        const dropdownMenu = event.currentTarget.nextElementSibling;
-        dropdownMenu.classList.toggle('show');
-    };
+      // Toggle dropdown menu
+      window.toggleDropdown = function(event) {
+        const dropdownContainer = event.currentTarget.nextElementSibling;
+        const dropdownMenu = dropdownContainer.querySelector('li');
+        if (dropdownMenu.classList.contains('show')) {
+          dropdownMenu.classList.remove('show');
+          dropdownContainer.classList.remove('active');
+        } else {
+          const otherDropdownContainers = document.querySelectorAll('.dropdown-container');
+          otherDropdownContainers.forEach((container) => {
+            const otherDropdownMenu = container.querySelector('li');
+            otherDropdownMenu.classList.remove('show');
+            container.classList.remove('active');
+          });
+          dropdownMenu.classList.add('show');
+          dropdownContainer.classList.add('active');
+        }
+      };
 
     // Function to update total values
     function updateTotals(transactions) {

@@ -6,7 +6,7 @@
     --primary-color: #0b9ba5;
     --secondary-color: #152b43;
     --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    --border-radius: 20px;
+    --border-radius: 0.8rem;
     --search-bg: #ffffff;
     --info-box-bg: #ffffff;
     --order-bg: #ffffff;
@@ -340,109 +340,72 @@ form button {
     transition: background-color 0.3s ease;
 }
 
+/* Gaya untuk elemen button dalam form */
+form button {
+    margin-top: 10px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 /* Gaya hover untuk elemen button dalam form */
 form button:hover {
     background-color: var(--primary-color);
 }
 
-.dropdown-container {
+.form-group {
     position: relative;
     display: inline-block;
+}
+
+.dropdown-container {
     border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px 10px;
-    background-color: var(--background-color);
-    cursor: pointer;
-}
-
-.dropdown-container .selected-value {
-    display: inline-block;
-    margin-right: 5px;
-}
-
-.dropdown-container .dropdown-arrow {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-}
-
-.dropdown-container li {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #f7f7f7;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     padding: 10px;
-    display: none; /* Initially hidden */
-    z-index: 10; /* Ensure it's on top */
-}
-
-.dropdown-container li {
-    list-style: none;
-    padding: 5px 10px;
     cursor: pointer;
-}
-
-.dropdown-container li:hover {
-    background-color: #eee;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .dropdown-container.active .dropdown-arrow {
     transform: rotate(180deg);
 }
 
-.dropdown-checkbox {
-    position: relative;
-    display: inline-block;
-  }
-  
-.dropdown-checkbox ul li {
-    margin-bottom: 10px;
-  }
-  
-.dropdown-checkbox li label {
-    margin-right: 10px;
-    margin-bottom: 10px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f7f7f7;
-    cursor: pointer;
-  }
-  
-.dropdown-checkbox li label:hover {
-    background-color: #eee;
-  }
-  
-.dropdown-checkbox li input[type="checkbox"] {
-    margin-right: 5px;
-  }
-  
-.dropdown-checkbox:hover .dropdown-arrow {
-    transform: rotate(180deg);
-  }
-  
 .dropdown-arrow {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: rotate(0deg);
-    transition: transform 0.3s;
-  }
+    font-size: 0.7rem;
 
-.filter.dropdown-arrow {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: rotate(0deg);
-  transition: transform 0.3s;
+    transform: rotate(0deg);
+    transition: transform 0.3s;}
+
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #ccc;
+    background: var(--background-color);
+    max-height: 20.23rem;
+    overflow-y: auto;
+    z-index: 1000;
+    border-radius: 0.5rem;
 }
 
-.container {
-    margin: 0 auto;
+.dropdown-list label {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.dropdown-list label:hover {
+    background: #f1f1f1;
+}
+
+.dropdown-list input[type="checkbox"] {
+    margin-right: 10px;
 }
 
 h1 {
@@ -460,6 +423,7 @@ h1 {
 .info-box {
     background: var(--info-box-bg);
     padding: 1rem;
+    border: 1px solid #ccc;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     flex: 1 1 220px;

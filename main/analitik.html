@@ -69,19 +69,24 @@
                         <!-- Filter section for Sales Growth Analysis -->
                         <div class="filter-section">
                             <label for="yearFilter">Year:</label>
-                            <select id="yearFilter">
-                                <option value="2023" selected>2023</option>
-                              </select>
+                            <div class="select-wrapper">
+                                <select id="yearFilter">
+                                    <option value="2023" selected>2023</option>
+                                </select>
+                                <span class="filter-arrow"></span>
+                            </div>
                             <label for="monthFilter">Month:</label>
-                            <select id="monthFilter">
-                                <option value="1" selected>January</option>
-                                <option value="2">February</option>
-                                <option value="3">March</option>
-                                <option value="4">April</option>
-                                <option value="5">May</option>
-                                <option value="6">June</option>
-                              </select>
-                            </select>
+                            <div class="select-wrapper">
+                                <select id="monthFilter">
+                                    <option value="1" selected>January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                </select>
+                                <span class="filter-arrow"></span>
+                            </div>
                             <button id="filterGrowthButton">Filter</button>
                         </div>
                         <table id="data-table">
