@@ -82,14 +82,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 window.location.href = '../index.html';
             }
         };
-  
-        fetch("../json/sales-growth.json")
-            .then((response) => response.json())
-            .then((data) => {
-                transactions = data;
-                filterData();
-            })
-            .catch((error) => console.error("Error fetching data:", error));
     }
   
     // Populate category and location checkboxes
@@ -864,7 +856,7 @@ function SalesTimeChart(transactions) {
             });
         }
     }
-  
+
     // menampilkan data sales growth
     function displaySalesGrowthChart(transactions) {
       const groupedData = {};
@@ -944,10 +936,19 @@ function SalesTimeChart(transactions) {
       });
   }
 
+  let growth = [];
+  fetch("../json/sales-growth.json")
+  .then((response) => response.json())
+  .then((data) => {
+      growth = data;
+      filterData();
+  })
+  .catch((error) => console.error("Error fetching data:", error));
+
   function filterData() {
     const year = document.getElementById("yearFilter").value;
     const month = document.getElementById("monthFilter").value;
-    const filteredData = transactions.filter(transaction => {
+    const filteredData = growth.filter(transaction => {
         const date = new Date(transaction.transaction_date);
         return date.getFullYear() == year && (date.getMonth() + 1) == month;
     });
