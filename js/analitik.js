@@ -341,7 +341,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     },
                     {
                         label: 'Transaction Quantity',
-                        type: 'line',
+                        type: 'bar',
                         data: transactionQuantitiesByMonth,
                         backgroundColor: '#8a5ae8',
                         borderColor: 'rgba(153, 102, 255, 1)',
