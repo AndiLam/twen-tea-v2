@@ -265,60 +265,63 @@ section {
   height: 300px;
   object-fit: cover;
   border-bottom: 1px solid var(--background-color);
-  filter: brightness(80%) blur(2px); /* Menambahkan efek buram dan gelap */
   transition: filter 0.3s ease, transform 0.3s ease; /* Menambahkan efek transisi */
 }
 
-.store-box img:hover {
+.store-box:hover img {
   filter: brightness(100%) blur(0); /* Menghilangkan efek buram dan gelap saat hover */
   transform: scale(1.1); /* Menambahkan zoom in sebesar 10% */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.location-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: var(--white);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 2;
-}
-
-.store-box:hover .location-box {
-  opacity: 1;
-}
-
-.location-box h2 {
+.store-box h2 {
+  top: 27%; /* Menempatkan h2 di bagian atas */
   font-size: 2.4rem;
   margin-bottom: 1rem;
   color: var(--white);
 }
 
-.location-box p {
+.store-box p {
+  top: 45%; /* Menempatkan p di tengah */
+  line-height: 1.6;
+  color: var(--white);
   font-size: 1.6rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
-  color: var(--white);
 }
 
-.location-box .btn {
+.store-box .btn {
+  bottom: 27%; /* Menempatkan btn di bagian bawah */
   background: var(--primary-color);
+  font-size: 1.2rem;
   color: var(--white);
-  padding: 1rem 2rem;
-  font-size: 1.6rem;
+  padding: 0.9rem 1.2rem;
   border-radius: var(--border-radius);
-  cursor: pointer;
   transition: background 0.3s ease;
   text-decoration: none;
-  display: inline-block;
 }
 
-.location-box .btn:hover {
+.store-box .btn:hover {
   background: var(--secondary-color);
 }
+
+.store-box h2,
+.store-box p,
+.store-box .btn {
+  position: absolute; /* Mengatur posisi absolut */
+  left: 50%; /* Menggeser ke kiri sejauh setengah lebar */
+  transform: translateX(-50%); /* Menggeser ulang ke posisi tengah horizontal */
+  text-align: center; /* Memastikan teks berada di tengah */
+  z-index: 1; /* Mengatur z-index agar berada di atas gambar */
+  opacity: 0;
+}
+
+.store-box:hover h2,
+.store-box:hover p,
+.store-box:hover .btn {
+  opacity: 1; /* Atur opasitas menjadi 1 saat hover */
+}
+
 
 .product-container {
   display: flex;
@@ -421,7 +424,6 @@ section {
   border-radius: 0.5rem;
 }
 
-/* Ensure the overlay container covers the entire image and is positioned absolutely */
 .overlay {
   position: absolute;
   top: 0;

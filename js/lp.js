@@ -89,60 +89,50 @@ document.addEventListener("DOMContentLoaded", function () {
           displayLocations(transactions, uniqStore, displayedLoc);
         });
       }
-
-      // Event listener for Discover More button
-      const discoverMoreButton = document.querySelector(".home .btn");
-      if (discoverMoreButton) {
-        discoverMoreButton.addEventListener("click", function (event) {
-          event.preventDefault();
-          displayedProducts = uniqueCategories.size; // Show all products
-          const productContainer = document.getElementById("product-container");
-          productContainer.innerHTML = ""; // Clear existing products
-          displayProducts(transactions, uniqueCategories, displayedProducts);
-        });
-      }
     })
-    .catch((error) => {
-      console.error("Error loading JSON data:", error);
-    });
 
-  function displayLocations(transactions, uniqStore, displayedLoc) {
-    const LocationContainer = document.getElementById("location-container");
-    let counter = 0;
-    uniqStore.forEach((category) => {
-      if (counter < displayedLoc) {
-        const transaction = transactions.find((trans) => trans.store_location === category);
-        if (transaction) {
-          const LocationBox = document.createElement("div");
-          LocationBox.classList.add("location-box");
-
-          const StoreBox = document.createElement("div");
-          StoreBox.classList.add("store-box");
-
-          const LocationTitle = document.createElement("h2");
-          LocationTitle.textContent = category;
-          const LocationImage = document.createElement("img");
-          LocationImage.src = "./assets/img/loc/" + transaction.store_location + ".jpg";
-          LocationImage.alt = category;
-          const LocationDescription = document.createElement("p");
-          LocationDescription.textContent = transaction.product_detail;
-          const LocationButton = document.createElement("a");
-          LocationButton.href = "#";
-          LocationButton.classList.add("btn");
-          LocationButton.textContent = "Learn More";
-
-          LocationBox.appendChild(LocationTitle);
-          LocationBox.appendChild(LocationDescription);
-          LocationBox.appendChild(LocationButton);
-          StoreBox.appendChild(LocationImage);
-          StoreBox.appendChild(LocationBox);
-          LocationContainer.appendChild(StoreBox);
-
-          counter++;
+    function displayLocations(transactions, uniqStore, displayedLoc) {
+      const LocationContainer = document.getElementById("location-container");
+      let counter = 0;
+      uniqStore.forEach((store) => {
+        if (counter < displayedLoc) {
+          const transaction = transactions.find((transactions) => transactions.store_location === store);
+          if (transaction) {
+    
+            const StoreBox = document.createElement("div");
+            StoreBox.classList.add("store-box");
+    
+            const LocationTitle = document.createElement("h2");
+            LocationTitle.textContent = store;
+            const LocationImage = document.createElement("img");
+            LocationImage.src = "./assets/img/loc/" + transaction.store_location + ".jpg";
+            LocationImage.alt = store;
+    
+            const locationDescriptions = {
+              "Hell's Kitchen": "Cozy retreat with chic decor, diverse drinks, snacks, free Wi-Fi.",
+              "Lower Manhattan": "Elegant escape with varied seating, specialty coffee, Wi-Fi, meeting rooms.",
+              "Astoria": "Charming cafe with artistic decor, diverse menu, Wi-Fi, cozy atmosphere.",
+            };
+    
+            const LocationDescription = document.createElement("p");
+            LocationDescription.textContent = locationDescriptions[store];
+    
+            const LocationButton = document.createElement("a");
+            LocationButton.href = "#product ";
+            LocationButton.classList.add("btn");
+            LocationButton.textContent = "Learn More";
+    
+            StoreBox.appendChild(LocationTitle);
+            StoreBox.appendChild(LocationDescription);
+            StoreBox.appendChild(LocationButton);
+            StoreBox.appendChild(LocationImage);
+            LocationContainer.appendChild(StoreBox);
+    
+            counter++;
+          }
         }
-      }
-    });
-  }
+      });
+    }
 
   function displayProducts(transactions, uniqueCategories, displayedProducts) {
     const productContainer = document.getElementById("product-container");
