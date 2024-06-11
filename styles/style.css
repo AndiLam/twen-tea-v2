@@ -152,6 +152,7 @@ section {
   border-radius: 0.5rem; /* Radius sudut */
   cursor: pointer; /* Kursor pointer */
   transition: background 0.3s; /* Transisi perubahan latar */
+  text-decoration: none; /* Tanpa dekorasi teks */
 }
 
 /* Menetapkan gaya hover untuk tombol dalam beranda */

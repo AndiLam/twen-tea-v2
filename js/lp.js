@@ -78,61 +78,64 @@ document.addEventListener("DOMContentLoaded", function () {
       let displayedProducts = 9;
       displayProducts(transactions, uniqueCategories, displayedProducts);
 
-      // Event listener for Learn More button
-      const learnMoreButton = document.querySelector(".home .btn");
-      if (learnMoreButton) {
-        learnMoreButton.addEventListener("click", function (event) {
+      // Event listener for Discover More button
+      const discoverMoreButton = document.querySelector(".home .btn");
+      if (discoverMoreButton) {
+        discoverMoreButton.addEventListener("click", function (event) {
           event.preventDefault();
           displayedLoc = uniqStore.size; // Show all locations
           const LocationContainer = document.getElementById("location-container");
           LocationContainer.innerHTML = ""; // Clear existing locations
           displayLocations(transactions, uniqStore, displayedLoc);
+
+          // Scroll to the store section
+          document.querySelector("#store").scrollIntoView({ behavior: "smooth" });
         });
       }
-    })
+    });
 
-    function displayLocations(transactions, uniqStore, displayedLoc) {
-      const LocationContainer = document.getElementById("location-container");
-      let counter = 0;
-      uniqStore.forEach((store) => {
-        if (counter < displayedLoc) {
-          const transaction = transactions.find((transactions) => transactions.store_location === store);
-          if (transaction) {
-    
-            const StoreBox = document.createElement("div");
-            StoreBox.classList.add("store-box");
-    
-            const LocationTitle = document.createElement("h2");
-            LocationTitle.textContent = store;
-            const LocationImage = document.createElement("img");
-            LocationImage.src = "./assets/img/loc/" + transaction.store_location + ".jpg";
-            LocationImage.alt = store;
-    
-            const locationDescriptions = {
-              "Hell's Kitchen": "Cozy retreat with chic decor, diverse drinks, snacks, free Wi-Fi.",
-              "Lower Manhattan": "Elegant escape with varied seating, specialty coffee, Wi-Fi, meeting rooms.",
-              "Astoria": "Charming cafe with artistic decor, diverse menu, Wi-Fi, cozy atmosphere.",
-            };
-    
-            const LocationDescription = document.createElement("p");
-            LocationDescription.textContent = locationDescriptions[store];
-    
-            const LocationButton = document.createElement("a");
-            LocationButton.href = "#product ";
-            LocationButton.classList.add("btn");
-            LocationButton.textContent = "Learn More";
-    
-            StoreBox.appendChild(LocationTitle);
-            StoreBox.appendChild(LocationDescription);
-            StoreBox.appendChild(LocationButton);
-            StoreBox.appendChild(LocationImage);
-            LocationContainer.appendChild(StoreBox);
-    
-            counter++;
-          }
+  function displayLocations(transactions, uniqStore, displayedLoc) {
+    const LocationContainer = document.getElementById("location-container");
+    let counter = 0;
+    uniqStore.forEach((store) => {
+      if (counter < displayedLoc) {
+        const transaction = transactions.find((transactions) => transactions.store_location === store);
+        if (transaction) {
+
+          const StoreBox = document.createElement("div");
+          StoreBox.classList.add("store-box");
+
+          const LocationTitle = document.createElement("h2");
+          LocationTitle.textContent = store;
+          const LocationImage = document.createElement("img");
+          LocationImage.src = "./assets/img/loc/" + transaction.store_location + ".jpg";
+          LocationImage.alt = store;
+
+          const locationDescriptions = {
+            "Hell's Kitchen": "Cozy retreat with chic decor, diverse drinks, snacks, free Wi-Fi.",
+            "Lower Manhattan": "Elegant escape with varied seating, specialty coffee, Wi-Fi, meeting rooms.",
+            "Astoria": "Charming cafe with artistic decor, diverse menu, Wi-Fi, cozy atmosphere.",
+          };
+
+          const LocationDescription = document.createElement("p");
+          LocationDescription.textContent = locationDescriptions[store];
+
+          const LocationButton = document.createElement("a");
+          LocationButton.href = "#product ";
+          LocationButton.classList.add("btn");
+          LocationButton.textContent = "Learn More";
+
+          StoreBox.appendChild(LocationTitle);
+          StoreBox.appendChild(LocationDescription);
+          StoreBox.appendChild(LocationButton);
+          StoreBox.appendChild(LocationImage);
+          LocationContainer.appendChild(StoreBox);
+
+          counter++;
         }
-      });
-    }
+      }
+    });
+  }
 
   function displayProducts(transactions, uniqueCategories, displayedProducts) {
     const productContainer = document.getElementById("product-container");
@@ -151,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const productDescription = document.createElement("p");
           productDescription.textContent = transaction.product_detail;
           const productButton = document.createElement("a");
-          productButton.href = "#";
+          productButton.href = "#home";
           productButton.classList.add("btn");
           productButton.textContent = "Learn More";
           productBox.appendChild(productTitle);
