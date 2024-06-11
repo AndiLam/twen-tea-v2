@@ -482,3 +482,83 @@ th {
     background: var(--order-table-th-bg);
     font-weight: 500;
 }
+
+/* Gaya untuk layar dengan lebar maksimum 768px (perangkat mobile) */
+@media (max-width: 768px) {
+    .topbar {
+        flex-direction: row; /* Kembalikan flex direction menjadi row */
+        justify-content: space-between; /* Ratakan elemen di sepanjang topbar */
+        align-items: center;
+    }
+
+    .topbar .toggle {
+        visibility: hidden;
+    }
+
+    .topbar .user {
+        margin-top: 0; /* Hilangkan margin atas */
+        position: relative; /* Buat posisi relatif untuk kontainer ikon pengguna */
+    }
+
+    .topbar .user .user-menu {
+        top: 100%; /* Geser menu pengguna ke bawah ikon pengguna */
+        right: 50%; /* Geser menu pengguna ke tengah ikon pengguna */
+        transform: translateX(50%); /* Geser menu pengguna ke tengah horizontal */
+        margin-top: 0.5rem; /* Berikan jarak atas */
+        left: auto; /* Hapus properti left */
+        min-width: 150px; /* Atur lebar menu pengguna */
+    }
+
+    .topbar .user.active .user-menu {
+        display: block; /* Tampilkan menu pengguna saat tombol pengguna aktif */
+    }
+
+    .topbar .user img {
+        width: 2.2rem; /* Sesuaikan ukuran ikon pengguna */
+        height: 2.2rem; /* Sesuaikan ukuran ikon pengguna */
+        object-fit: cover; /* Pastikan ikon pengguna terlihat baik */
+        border-radius: 50%; /* Buat sudut bulat */
+    }
+
+    .topbar .user .user-menu a {
+        display: block;
+        padding: 0.5rem; /* Atur padding */
+        text-decoration: none;
+        color: var(--text-color);
+        transition: background 0.3s;
+    }
+
+    .topbar .user .user-menu a:hover {
+        background: var(--background-color);
+        color: #ff0000; /* Ganti warna teks saat dihover */
+    }
+
+    .nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 80%;
+        z-index: 999; /* Pastikan navigasi berada di atas konten lain */
+    }
+
+    .nav ul {
+        display: flex;
+        margin-left: 0;
+    }
+
+    .nav ul li {
+        margin: 0;
+    }
+
+    .nav ul li a {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+        margin-bottom: 10%;
+    }
+
+    .nav .logo,
+    .nav .title {
+        display: none;
+    }
+
+}
