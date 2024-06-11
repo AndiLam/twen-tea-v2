@@ -2,7 +2,7 @@ var reUse =
     '<nav class="nav" id="sidebar">'+
         '<div class="logo">'+
             '<span class="logo-icon"><img src="../assets/img/icon/kopi.png"></span>'+
-            '<span class="logo-text"><h2>Mehhh</h2></span>'+
+            '<span class="logo-text"><h2>Admin</h2></span>'+
         '</div>'+
         '<ul>'
 
