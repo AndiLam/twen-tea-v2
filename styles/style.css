@@ -1,692 +1,788 @@
+/* Mendefinisikan URL font yang akan diimpor */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
+/* Mendefinisikan variabel warna dan properti CSS */
 :root {
-    --primary-color: #0b9ba5;
-    --secondary-color: #152b43;
-    --white: #fff;
-    --text-color: #333333;
-    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    --border-radius: 20px;
-    --background-color: #f5f5f5;
-
+    --primary-color: #0b9ba5; /* Warna utama */
+    --secondary-color: #152b43; /* Warna sekunder */
+    --white: #fff; /* Warna putih */
+    --text-color: #333333; /* Warna teks */
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Bayangan kotak */
+    --border-radius: 20px; /* Radius sudut untuk border */
+    --background-color: #f5f5f5; /* Warna latar belakang */
 }
 
+/* Menetapkan gaya dasar untuk semua elemen */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', sans-serif; /* Menggunakan font Nunito */
 }
 
+/* Menetapkan gaya pemilihan teks */
 *::selection {
-    background: var(--primary-color);
-    color: var(--white);
+    background: var(--primary-color); /* Warna latar saat dipilih */
+    color: var(--white); /* Warna teks saat dipilih */
 }
 
+/* Menetapkan ukuran font pada elemen HTML */
 html {
-    font-size: 62.5%;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+    font-size: 62.5%; /* 1rem = 10px */
+    scroll-behavior: smooth; /* Efek scroll yang halus */
+    overflow-x: hidden; /* Menghilangkan overflow horizontal */
 }
 
+/* Menetapkan gaya dasar untuk tubuh dokumen */
 body {
-    line-height: 1.6;
-    background: var(--background-color);
-    color: var(--text-color);
+    line-height: 1.6; /* Tinggi baris */
+    background: var(--background-color); /* Warna latar belakang */
+    color: var(--text-color); /* Warna teks */
 }
 
+/* Menetapkan gaya untuk bagian header */
 header {
-    background: var(--white);
-    color: var(--text-color);
-    padding: 1rem 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    background: var(--white); /* Warna latar header */
+    color: var(--text-color); /* Warna teks */
+    padding: 1rem 0; /* Padding header */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Bayangan header */
+    position: sticky; /* Header menempel di atas */
+    top: 0; /* Posisi header di bagian atas */
+    z-index: 1000; /* Z-index header */
 }
 
+/* Menetapkan gaya untuk ikon menu */
 .menu-bar {
-  display: none;
-  cursor: pointer;
+  display: none; /* Menyembunyikan ikon menu */
+  cursor: pointer; /* Mengubah kursor saat dihover */
 }
 
 .menu-bar i {
-  font-size: 2rem;
-  color: var(--primary-color);
+  font-size: 2rem; /* Ukuran ikon menu */
+  color: var(--primary-color); /* Warna ikon menu */
 }
 
+/* Menetapkan gaya untuk navigasi */
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    display: flex; /* Tampilan fleksibel */
+    justify-content: space-between; /* Penataan konten */
+    align-items: center; /* Penataan konten */
+    max-width: 1200px; /* Lebar maksimum */
+    margin: 0 auto; /* Margin otomatis */
+    padding: 0 2rem; /* Padding */
 }
 
+/* Menetapkan gaya untuk logo di navigasi */
 nav .logo img {
-    width: 50px;
-    height: auto;
+  width: 50px; /* Lebar gambar logo */
+  height: auto; /* Tinggi gambar logo menyesuaikan */
 }
 
+/* Menetapkan gaya untuk daftar dalam navigasi */
 nav ul {
-    display: flex;
-    list-style: none;
+  display: flex; /* Tampilan fleksibel */
+  list-style: none; /* Menghilangkan gaya daftar */
 }
 
+/* Menetapkan gaya untuk setiap item dalam daftar navigasi */
 nav ul li {
-    margin-left: 2rem;
+  margin-left: 2rem; /* Jarak kiri antar item */
 }
 
+/* Menetapkan gaya untuk tautan dalam daftar navigasi */
 nav ul li a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-size: 1.8rem;
-    transition: color 0.3s;
+  color: var(--primary-color); /* Warna teks tautan */
+  text-decoration: none; /* Menghilangkan garis bawah */
+  font-size: 1.8rem; /* Ukuran font tautan */
+  transition: color 0.3s; /* Transisi perubahan warna */
 }
 
+/* Menetapkan gaya hover untuk tautan dalam daftar navigasi */
 nav ul li a:hover {
-    color: var(--primary-color);
+  color: var(--primary-color); /* Warna teks tautan saat dihover */
 }
 
+/* Menetapkan gaya untuk konten utama */
 main {
-    padding: 4rem 2rem;
+  padding: 4rem 2rem; /* Padding konten utama */
 }
 
+/* Menetapkan gaya untuk setiap bagian */
 section {
-    padding: 4rem 0;
+  padding: 4rem 0; /* Padding bagian */
 }
 
+/* Menetapkan gaya untuk bagian beranda */
 .home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    color: var(--white);
-    text-align: center;
-    position: relative;
+  display: flex; /* Tampilan fleksibel */
+  flex-direction: column; /* Arah kolom */
+  align-items: center; /* Penataan konten */
+  justify-content: center; /* Penataan konten */
+  min-height: 100vh; /* Tinggi minimum */
+  color: var(--white); /* Warna teks */
+  text-align: center; /* Penataan teks */
+  position: relative; /* Posisi relatif */
 }
 
+/* Menetapkan gaya untuk konten dalam beranda */
 .home .content {
-    z-index: 2;
+  z-index: 2; /* Z-index konten */
 }
 
+/* Menetapkan gaya untuk judul dalam beranda */
 .home .content h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
+  font-size: 4rem; /* Ukuran font judul */
+  margin-bottom: 1rem; /* Jarak bawah */
 }
 
+/* Menetapkan gaya untuk paragraf dalam beranda */
 .home .content p {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+  font-size: 2rem; /* Ukuran font paragraf */
+  margin-bottom: 2rem; /* Jarak bawah */
 }
 
+/* Menetapkan gaya untuk tombol dalam beranda */
 .home .content .btn {
-    background: var(--primary-color);
-    color: var(--white);
-    padding: 1rem 2rem;
-    font-size: 1.8rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background 0.3s;
+  background: var(--primary-color); /* Warna latar tombol */
+  color: var(--white); /* Warna teks tombol */
+  padding: 1rem 2rem; /* Padding tombol */
+  font-size: 1.8rem; /* Ukuran font tombol */
+  border: none; /* Tanpa border */
+  border-radius: 0.5rem; /* Radius sudut */
+  cursor: pointer; /* Kursor pointer */
+  transition: background 0.3s; /* Transisi perubahan latar */
 }
 
+/* Menetapkan gaya hover untuk tombol dalam beranda */
 .home .content .btn:hover {
-    background: var(--secondary-color);
+  background: var(--secondary-color); /* Warna latar saat dihover */
 }
 
+/* Menetapkan gaya untuk kontainer video dalam beranda */
 .home .video-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 1;
+  position: absolute; /* Posisi absolut */
+  top: 0; /* Posisi di atas */
+  left: 0; /* Posisi di kiri */
+  width: 100%; /* Lebar penuh */
+  height: 100%; /* Tinggi penuh */
+  overflow: hidden; /* Overflow tersembunyi */
+  z-index: 1; /* Z-index */
 }
 
+/* Menetapkan gaya untuk video dalam kontainer video beranda */
 .home .video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%; /* Lebar penuh */
+  height: 100%; /* Tinggi penuh */
+  object-fit: cover; /* Objek sesuai ukuran */
 }
 
+/* Menetapkan gaya untuk bagian tentang */
 .about, .store, .product, .team {
-    text-align: center;
+  text-align: center; /* Penataan teks tengah */
 }
 
+/* Menetapkan gaya untuk judul dalam setiap bagian */
 .about .heading, .store .heading, .product .heading, .team .heading {
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 3rem;
+  font-size: 3rem; /* Ukuran font judul */
+  color: var(--primary-color); /* Warna teks judul */
+  margin-bottom: 3rem; /* Jarak bawah */
 }
 
+/* Menetapkan gaya untuk kontainer kotak dalam bagian tentang dan produk */
 .about .box-container, .product .box-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+  display: grid; /* Tampilan grid */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Penataan kolom grid */
+  gap: 2rem; /* Jarak antar elemen */
 }
 
+/* Menetapkan gaya untuk setiap kotak dalam bagian tentang */
 .about .box, .product .box {
-    background: var(--white);
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+  background: var(--white); /* Warna latar */
+  border-radius: 0.5rem; /* Radius sudut */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan kotak */
+  overflow: hidden; /* Overflow tersembunyi */
 }
 
+/* Menetapkan gaya untuk kontainer tentang */
 .about-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  background: var(--white);
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+display: flex; /* Tampilan fleksibel */
+align-items: center; /* Penataan konten */
+justify-content: center; /* Penataan konten */
+flex-wrap: wrap; /* Wrap konten */
+background: var(--white); /* Warna latar belakang */
+border-radius: 0.5rem; /* Radius sudut */
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan kotak */
+padding: 2rem; /* Padding kontainer */
 }
 
+/* Menetapkan gaya untuk gambar dalam kontainer tentang */
 .about-image {
-  flex: 1;
-  max-width: 500px;
-  margin: 1rem;
+flex: 1; /* Flexibilitas */
+max-width: 500px; /* Lebar maksimum */
+margin: 1rem; /* Margin */
 }
 
+/* Menetapkan gaya untuk gambar dalam kontainer tentang */
 .about-image img {
-  width: 100%;
-  border-radius: 0.5rem;
+width: 100%; /* Lebar penuh */
+border-radius: 0.5rem; /* Radius sudut */
 }
 
+/* Menetapkan gaya untuk konten dalam kontainer tentang */
 .about-content {
-  flex: 2;
-  margin: 1rem;
-  text-align: justify;
+flex: 2; /* Flexibilitas */
+margin: 1rem; /* Margin */
+text-align: justify; /* Penataan teks rata kanan kiri */
 }
 
+/* Menetapkan gaya untuk kelas ".bout" */
 .bout {
-  color: var(--background-color);
-  background: var(--primary-color);
-  font-weight: bold;
-  border: 2px solid var(--primary-color);
-  border-radius: 0.5rem;
-  padding: 0.3rem 0.5rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  color: var(--background-color); /* Warna teks */
+  background: var(--primary-color); /* Warna latar belakang */
+  font-weight: bold; /* Ketebalan font */
+  border: 2px solid var(--primary-color); /* Garis tepi */
+  border-radius: 0.5rem; /* Radius sudut */
+  padding: 0.3rem 0.5rem; /* Padding */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transisi saat hover */
 }
 
+/* Menetapkan gaya hover untuk kelas ".bout" */
 .bout:hover {
-  background: var(--background-color); /* Warna background berubah saat hover */
+  background: var(--background-color); /* Warna latar belakang berubah saat hover */
   color: var(--primary-color); /* Warna teks berubah saat hover */
 }
 
+/* Menetapkan gaya untuk paragraf dalam konten tentang */
 .about-content p {
-  font-size: 1.6rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
-
-.about-content .btn {
-  background: var(--primary-color);
-  color: var(--white);
-  padding: 1rem 2rem;
-  font-size: 1.6rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background 0.3s;
-  text-decoration: none;
-}
-
-.about-content .btn:hover {
-  background: var(--secondary-color);
-}
-
-.store-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  background: var(--background-color);
-  padding: 2rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-}
-
-.store-box {
-  background: var(--white);
-  box-shadow: var(--box-shadow);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-}
-
-.store-box img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-bottom: 1px solid var(--background-color);
-  transition: filter 0.3s ease, transform 0.3s ease; /* Menambahkan efek transisi */
-}
-
-.store-box:hover img {
-  filter: brightness(100%) blur(0); /* Menghilangkan efek buram dan gelap saat hover */
-  transform: scale(1.1); /* Menambahkan zoom in sebesar 10% */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.store-box h2 {
-  top: 27%; /* Menempatkan h2 di bagian atas */
-  font-size: 2.4rem;
-  margin-bottom: 1rem;
-  color: var(--white);
-}
-
-.store-box p {
-  top: 45%; /* Menempatkan p di tengah */
-  line-height: 1.6;
-  color: var(--white);
-  font-size: 1.6rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
-
-.store-box .btn {
-  bottom: 27%; /* Menempatkan btn di bagian bawah */
-  background: var(--primary-color);
-  font-size: 1.2rem;
-  color: var(--white);
-  padding: 0.9rem 1.2rem;
-  border-radius: var(--border-radius);
-  transition: background 0.3s ease;
-  text-decoration: none;
-}
-
-.store-box .btn:hover {
-  background: var(--secondary-color);
-}
-
+  font-size: 1.6rem; /* Ukuran font */
+  line-height: 1.6; /* Tinggi baris */
+  margin-bottom: 1.5rem; /* Jarak bawah */
+  }
+  
+  /* Menetapkan gaya untuk tombol dalam konten tentang */
+  .about-content .btn {
+  background: var(--primary-color); /* Warna latar tombol */
+  color: var(--white); /* Warna teks tombol */
+  padding: 1rem 2rem; /* Padding tombol */
+  font-size: 1.6rem; /* Ukuran font */
+  border: none; /* Tanpa border */
+  border-radius: 0.5rem; /* Radius sudut */
+  cursor: pointer; /* Kursor pointer */
+  transition: background 0.3s; /* Transisi perubahan latar */
+  text-decoration: none; /* Tanpa dekorasi teks */
+  }
+  
+  /* Menetapkan gaya hover untuk tombol dalam konten tentang */
+  .about-content .btn:hover {
+  background: var(--secondary-color); /* Warna latar saat dihover */
+  }
+  
+  /* Menetapkan gaya untuk kontainer toko */
+  .store-container {
+    display: grid; /* Tampilan grid */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Penataan kolom grid */
+    gap: 2rem; /* Jarak antar elemen */
+    background: var(--background-color); /* Warna latar belakang */
+    padding: 2rem; /* Padding */
+    border-radius: var(--border-radius); /* Radius sudut */
+    box-shadow: var(--box-shadow); /* Bayangan kotak */
+  }
+  
+  /* Menetapkan gaya untuk setiap kotak dalam kontainer toko */
+  .store-box {
+    background: var(--white); /* Warna latar */
+    box-shadow: var(--box-shadow); /* Bayangan kotak */
+    overflow: hidden; /* Overflow tersembunyi */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi transformasi dan bayangan */
+    position: relative; /* Posisi relatif */
+  }
+  
+  /* Menetapkan gaya untuk gambar dalam kotak toko */
+  .store-box img {
+    width: 100%; /* Lebar penuh */
+    height: 300px; /* Tinggi gambar */
+    object-fit: cover; /* Objek sesuai ukuran */
+    border-bottom: 1px solid var(--background-color); /* Garis bawah */
+    transition: filter 0.3s ease, transform 0.3s ease; /* Transisi filter dan transform */
+  }
+  
+  /* Menetapkan gaya hover untuk gambar dalam kotak toko */
+  .store-box:hover img {
+    filter: brightness(100%) blur(0); /* Filter gambar */
+    transform: scale(1.1); /* Skala transformasi */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Bayangan kotak */
+  }
+  
+  /* Menetapkan gaya untuk judul dalam kotak toko */
+  .store-box h2 {
+    top: 27%; /* Posisi atas */
+    font-size: 2.4rem; /* Ukuran font */
+    margin-bottom: 1rem; /* Jarak bawah */
+    color: var(--white); /* Warna teks */
+  }
+  
+  /* Menetapkan gaya untuk paragraf dalam kotak toko */
+  .store-box p {
+    top: 45%; /* Posisi atas */
+    line-height: 1.6; /* Tinggi baris */
+    color: var(--white); /* Warna teks */
+    font-size: 1.6rem; /* Ukuran font */
+    margin-bottom: 1.5rem; /* Jarak bawah */
+  }
+  
+  /* Menetapkan gaya untuk tombol dalam kotak toko */
+  .store-box .btn {
+    bottom: 27%; /* Posisi bawah */
+    background: var(--primary-color); /* Warna latar tombol */
+    font-size: 1.2rem; /* Ukuran font */
+    color: var(--white); /* Warna teks */
+    padding: 0.9rem 1.2rem; /* Padding */
+    border-radius: var(--border-radius); /* Radius sudut */
+    transition: background 0.3s ease; /* Transisi perubahan latar */
+    text-decoration: none; /* Tanpa dekorasi teks */
+  }
+  
+  /* Menetapkan gaya hover untuk tombol dalam kotak toko */
+  .store-box .btn:hover {
+    background: var(--secondary-color); /* Warna latar saat dihover */
+  }
+  
+/* Menetapkan gaya untuk judul, teks, dan tombol pada ".store-box" */
 .store-box h2,
 .store-box p,
 .store-box .btn {
-  position: absolute; /* Mengatur posisi absolut */
-  left: 50%; /* Menggeser ke kiri sejauh setengah lebar */
-  transform: translateX(-50%); /* Menggeser ulang ke posisi tengah horizontal */
-  text-align: center; /* Memastikan teks berada di tengah */
-  z-index: 1; /* Mengatur z-index agar berada di atas gambar */
-  opacity: 0;
+  position: absolute; /* Posisi absolut */
+  left: 50%; /* Posisi horizontal di tengah */
+  transform: translateX(-50%); /* Menggeser horisontal ke kiri sejauh 50% dari lebar elemen */
+  text-align: center; /* Penataan teks tengah */
+  z-index: 1; /* Indeks z */
+  opacity: 0; /* Opasitas awal */
 }
 
+/* Menetapkan gaya untuk judul, teks, dan tombol pada ".store-box" saat hover */
 .store-box:hover h2,
 .store-box:hover p,
 .store-box:hover .btn {
-  opacity: 1; /* Atur opasitas menjadi 1 saat hover */
+  opacity: 1; /* Opasitas saat hover */
 }
 
-
+/* Menetapkan gaya untuk kontainer produk */
 .product-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  padding: 2rem;
+  display: flex; /* Tampilan fleksibel */
+  flex-wrap: wrap; /* Wrap konten */
+  justify-content: center; /* Penataan konten */
+  gap: 2rem; /* Jarak antar elemen */
+  padding: 2rem; /* Padding */
 }
 
+/* Menetapkan gaya untuk setiap kotak produk */
 .product-box {
-  flex: 1 1 300px;
-  border-radius: var(--border-radius);
-  padding: 2rem;
-  text-align: center;
-  min-height: 400px;
-  box-shadow: var(--box-shadow);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 300px; /* Fleksibilitas */
+  border-radius: var(--border-radius); /* Radius sudut */
+  padding: 2rem; /* Padding */
+  text-align: center; /* Penataan teks tengah */
+  min-height: 400px; /* Tinggi minimum */
+  box-shadow: var(--box-shadow); /* Bayangan kotak */
+  display: flex; /* Tampilan fleksibel */
+  flex-direction: column; /* Arah kolom */
+  justify-content: space-between; /* Penataan konten */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi transformasi dan bayangan */
 }
 
+/* Menetapkan gaya hover untuk kotak produk */
 .product-box:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px); /* Translasi transformasi */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Bayangan kotak */
 }
 
-
+/* Menetapkan gaya untuk gambar dalam kotak produk */
 .product-box img {
-  max-width: 100%;
-  height: auto;
-  max-height: 200px; /* Set max height for images */
-  object-fit: cover; /* Maintain aspect ratio */
+  max-width: 100%; /* Lebar maksimum */
+  height: auto; /* Tinggi otomatis */
+  max-height: 200px; /* Tinggi maksimum */
+  object-fit: cover; /* Objek sesuai ukuran */
 }
 
+/* Menetapkan gaya untuk judul dalam kotak produk */
 .product-box h2 {
-  font-size: 2.4rem;
-  margin-bottom: 1rem;
-  color: var(--text-color);
+  font-size: 2.4rem; /* Ukuran font */
+  margin-bottom: 1rem; /* Jarak bawah */
+  color: var(--text-color); /* Warna teks */
 }
 
+/* Menetapkan gaya untuk paragraf dalam kotak produk */
 .product-box p {
-  font-size: 1.6rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  color: var(--text-color);
-  flex-grow: 1;
+  font-size: 1.6rem; /* Ukuran font */
+  line-height: 1.6; /* Tinggi baris */
+  margin-bottom: 1.5rem; /* Jarak bawah */
+  color: var(--text-color); /* Warna teks */
+  flex-grow: 1; /* Perluasan fleks */
 }
 
+/* Menetapkan gaya untuk tombol dalam kotak produk */
 .product-box .btn {
-  background: var(--primary-color);
-  color: var(--white);
-  padding: 1rem 2rem;
-  font-size: 1.6rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background 0.3s;
-  text-decoration: none;
+  background: var(--primary-color); /* Warna latar tombol */
+  color: var(--white); /* Warna teks */
+  padding: 1rem 2rem; /* Padding */
+  font-size: 1.6rem; /* Ukuran font */
+  border: none; /* Tanpa border */
+  border-radius: 0.5rem; /* Radius sudut */
+  cursor: pointer; /* Kursor pointer */
+  transition: background 0.3s; /* Transisi perubahan latar */
+  text-decoration: none; /* Tanpa dekorasi teks */
 }
 
+/* Menetapkan gaya hover untuk tombol dalam kotak produk */
 .product-box .btn:hover {
-  background: var(--secondary-color);
+  background: var(--secondary-color); /* Warna latar saat dihover */
 }
 
+/* Menetapkan gaya untuk kontainer track karusel */
 .carousel-track-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  display: flex; /* Tampilan fleksibel */
+  justify-content: center; /* Penataan konten */
+  align-items: center; /* Penataan konten */
+  overflow: hidden; /* Overflow tersembunyi */
 }
 
+/* Menetapkan gaya untuk track karusel */
 .carousel-track {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
+  display: flex; /* Tampilan fleksibel */
+  transition: transform 0.5s ease-in-out; /* Transisi transformasi */
 }
 
+/* Menetapkan gaya untuk slide dalam karusel */
 .carousel-slide {
-  min-width: 30%;
-  padding: 3rem;
-  transition: transform 0.5s ease-in-out;
+  min-width: 30%; /* Lebar minimum */
+  padding: 3rem; /* Padding */
+  transition: transform 0.5s ease-in-out; /* Transisi transformasi */
 }
 
+/* Menetapkan gaya untuk konten slide dalam karusel */
 .carousel-slide .slide-content {
-  position: relative;
+  position: relative; /* Posisi relatif */
 }
 
+/* Menetapkan gaya untuk gambar dalam slide karusel */
 .carousel-slide img {
-  width: 100%;
-  height: auto;
-  border-radius: 0.5rem;
+  width: 100%; /* Lebar penuh */
+  height: auto; /* Tinggi otomatis */
+  border-radius: 0.5rem; /* Radius sudut */
 }
 
+/* Menetapkan gaya untuk overlay dalam slide karusel */
 .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
+  position: absolute; /* Posisi absolut */
+  top: 0; /* Posisi atas */
+  left: 0; /* Posisi kiri */
+  width: 100%; /* Lebar penuh */
+  height: 100%; /* Tinggi penuh */
+  opacity: 0; /* Opasitas nol */
+  transition: opacity 0.5s ease; /* Transisi opasitas */
+  background-color: rgba(0, 0, 0, 0.5); /* Warna latar belakang */
+  border-radius: 0.5rem; /* Radius sudut */
+  display: flex; /* Tampilan fleksibel */
+  justify-content: center; /* Penataan konten */
+  align-items: center; /* Penataan konten */
+  pointer-events: none; /* Event pointer nonaktif */
 }
 
+/* Menetapkan gaya untuk konten dalam overlay */
 .overlay-content {
-  color: white;
-  text-align: center;
-  padding: 20px;
+  color: white; /* Warna teks */
+  text-align: center; /* Penataan teks tengah */
+  padding: 20px; /* Padding */
 }
 
+/* Menetapkan gaya hover untuk slide dalam karusel */
 .carousel-slide:hover .overlay {
-  opacity: 1;
-  pointer-events: auto;
+  opacity: 1; /* Opasitas satu */
+  pointer-events: auto; /* Event pointer aktif */
 }
 
+/* Menetapkan gaya untuk ikon media sosial */
 .social-icons {
-  margin-top: 1rem;
+  margin-top: 1rem; /* Jarak atas */
 }
 
+/* Menetapkan gaya untuk tautan media sosial */
 .social-icons a {
-  color: white;
-  margin: 0 10px;
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
+  color: white; /* Warna teks */
+  margin: 0 10px; /* Margin */
+  font-size: 1.5rem; /* Ukuran font */
+  transition: color 0.3s ease; /* Transisi warna */
 }
 
+/* Menetapkan gaya hover untuk tautan media sosial */
 .social-icons a:hover {
-  color: var(--secondary-color);
+  color: var(--secondary-color); /* Warna teks saat dihover */
 }
 
+/* Menetapkan gaya untuk tombol navigasi karusel */
 .carousel-buttons {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
+  position: absolute; /* Posisi absolut */
+  top: 50%; /* Posisi tengah vertikal */
+  width: 100%; /* Lebar penuh */
+  display: flex; /* Tampilan fleksibel */
+  justify-content: space-between; /* Penataan konten */
+  transform: translateY(-50%); /* Translasi vertikal */
 }
 
+/* Menetapkan gaya untuk tombol navigasi karusel */
 .carousel-button {
-  background: var(--primary-color);
-  border: none;
-  color: var(--white);
-  padding: 1rem;
-  cursor: pointer;
-  font-size: 2rem;
-  transition: background 0.3s;
+  background: var(--primary-color); /* Warna latar tombol */
+  border: none; /* Tanpa border */
+  color: var(--white); /* Warna teks */
+  padding: 1rem; /* Padding */
+  cursor: pointer; /* Kursor pointer */
+  font-size: 2rem; /* Ukuran font */
+  transition: background 0.3s; /* Transisi perubahan latar */
 }
 
+/* Menetapkan gaya hover untuk tombol navigasi karusel */
 .carousel-button:hover {
-  background: var(--secondary-color);
+  background: var(--secondary-color); /* Warna latar saat dihover */
 }
 
+/* Menetapkan gaya untuk karusel tim */
 .team-carousel {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  overflow: hidden;
+  position: relative; /* Posisi relatif */
+  max-width: 1200px; /* Lebar maksimum */
+  margin: 0 auto; /* Margin */
+  overflow: hidden; /* Overflow tersembunyi */
 }
 
+/* Menetapkan gaya untuk ikon garis grafik */
 .fa-solid.fa-chart-line {
-  color: var(--primary-color);
-  transition: color 0.3s ease;
+  color: var(--primary-color); /* Warna ikon */
+  transition: color 0.3s ease; /* Transisi warna */
 }
 
+/* Menetapkan gaya hover untuk ikon garis grafik */
 .fa-solid.fa-chart-line:hover {
-  color: var(--secondary-color);
+  color: var(--secondary-color); /* Warna ikon saat dihover */
 }
 
-
+/* Menetapkan gaya untuk footer */
 footer {
-  background: var(--background-color);
-  color: var(--text-color);
-  padding: 2rem;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  border-top: 2px solid var(--primary-color);
-  box-shadow: var(--box-shadow);
+  background: var(--background-color); /* Warna latar belakang */
+  color: var(--text-color); /* Warna teks */
+  padding: 2rem; /* Padding */
+  display: flex; /* Tampilan fleksibel */
+  justify-content: space-between; /* Penataan konten */
+  flex-wrap: wrap; /* Wrap konten */
+  border-top: 2px solid var(--primary-color); /* Garis atas */
+  box-shadow: var(--box-shadow); /* Bayangan kotak */
 }
 
+/* Menetapkan gaya untuk bagian kiri footer */
 footer .footer-left, footer .footer-center {
-  flex: 1 1 300px;
-  margin: 1rem;
-  padding: 0 1rem;
+  flex: 1 1 300px; /* Fleksibilitas */
+  margin: 1rem; /* Margin */
+  padding: 0 1rem; /* Padding */
 }
 
+/* Menetapkan gaya untuk judul di footer */
 footer h3 {
-  margin-bottom: 1rem;
-  color: var(--primary-color);
+  margin-bottom: 1rem; /* Jarak bawah */
+  color: var(--primary-color); /* Warna teks */
 }
 
+/* Menetapkan gaya untuk teks di footer */
 footer p {
-  margin: 0.5rem 0;
+  margin: 0.5rem 0; /* Margin */
 }
 
+/* Menetapkan gaya untuk media di footer */
 .footer-media {
-  display: flex;
-  align-items: center;
-  margin-top: 1rem;
-  padding: 0 1rem;
+  display: flex; /* Tampilan fleksibel */
+  align-items: center; /* Penataan konten */
+  margin-top: 1rem; /* Jarak atas */
+  padding: 0 1rem; /* Padding */
 }
 
 .footer-media a {
-  margin-right: 1rem;
-  font-size: 1.5rem;
-  transition: color 0.3s;
+  margin-right: 1rem; /* Margin */
+  font-size: 1.5rem; /* Ukuran font */
+  transition: color 0.3s; /* Transisi perubahan warna */
 }
 
+/* Menetapkan gaya untuk tautan di footer */
 footer a {
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: color 0.3s;
+  color: var(--primary-color); /* Warna teks */
+  text-decoration: none; /* Tanpa dekorasi teks */
+  transition: color 0.3s; /* Transisi warna */
 }
 
+/* Menetapkan gaya untuk gambar di footer */
 footer .footer-left img {
-  max-width: 150px; /* Adjust the max-width to a suitable size */
-  height: auto;
-  border-radius: var(--border-radius);
-  display: block; /* Ensures the image stays within the div */
-  margin: 0 auto; /* Centers the image within its container */
+  max-width: 150px; /* Lebar maksimum */
+  height: auto; /* Tinggi otomatis */
+  border-radius: var(--border-radius); /* Radius sudut */
+  display: block; /* Tampilan blok */
+  margin: 0 auto; /* Margin */
 }
 
+/* Menetapkan gaya untuk konten di footer */
 footer .footer-center div {
-  display: flex;
-  align-items: center;
-  margin: 0.5rem 0;
+  display: flex; /* Tampilan fleksibel */
+  align-items: center; /* Penataan konten */
+  margin: 0.5rem 0; /* Margin */
 }
 
+/* Menetapkan gaya untuk ikon di footer */
 footer .footer-center i {
-  font-size: 1.5rem;
-  margin-right: 0.5rem;
-  color: var(--primary-color);
+  font-size: 1.5rem; /* Ukuran font */
+  margin-right: 0.5rem; /* Margin */
+  color: var(--primary-color); /* Warna ikon */
 }
 
-
-
-footer .footer-media :hover {
-  color: var(--secondary-color);
+/* Menetapkan gaya hover untuk media di footer */
+footer .footer-media a:hover {
+  color: var(--secondary-color); /* Warna teks saat dihover */
 }
 
+/* Menetapkan gaya untuk bagian bawah footer */
 .footer-bottom {
-  width: 100%;
-  display: flex;
-  justify-content: center; /* Centers the content horizontally */
-  align-items: center;     /* Centers the content vertically */
-  padding: 1.5rem;
-  border-top: 2px solid var(--primary-color); /* Optional: Adds a top border for separation */
-  margin-top: 2rem;        /* Adds margin to the top for separation from the content above */
+  width: 100%; /* Lebar penuh */
+  display: flex; /* Tampilan fleksibel */
+  justify-content: center; /* Penataan konten */
+  align-items: center; /* Penataan konten */
+  padding: 1.5rem; /* Padding */
+  border-top: 2px solid var(--primary-color); /* Garis atas */
+  margin-top: 2rem; /* Jarak atas */
 }
 
+/* Menetapkan gaya untuk hak cipta di footer */
 .footer-copyright {
-  color: var(--secondary-color); /* Adjust the color as needed */
-  text-align: center; /* Ensures text is centered */
-  font-size: 1.5rem;
+  color: var(--secondary-color); /* Warna teks */
+  text-align: center; /* Penataan teks tengah */
+  font-size: 1.5rem; /* Ukuran font */
 }
 
+/* Menetapkan gaya untuk tampilan responsif saat lebar layar kurang dari atau sama dengan 768px */
 @media (max-width: 768px) {
+  /* Menetapkan gaya untuk daftar menu navigasi saat layar kecil */
   nav ul {
-      display: none;
-      flex-direction: column;
-      width: 100%;
-      background: var(--white);
-      position: absolute;
-      top: 100%;
-      left: 0;
-      text-align: center;
+      display: none; /* Menyembunyikan daftar menu */
+      flex-direction: column; /* Penataan konten menjadi kolom */
+      width: 100%; /* Lebar penuh */
+      background: var(--white); /* Warna latar belakang */
+      position: absolute; /* Posisi absolut */
+      top: 100%; /* Posisi bawah */
+      left: 0; /* Posisi kiri */
+      text-align: center; /* Penataan teks tengah */
   }
 
+  /* Menetapkan gaya untuk setiap item dalam daftar menu navigasi saat layar kecil */
   nav ul li {
-      margin: 1rem 0;
+      margin: 1rem 0; /* Margin */
   }
 
+  /* Menetapkan gaya untuk menampilkan daftar menu saat tombol menu diaktifkan */
   nav ul.show {
-      display: flex;
+      display: flex; /* Menampilkan daftar menu */
   }
 
+  /* Menetapkan gaya untuk tombol menu saat layar kecil */
   .menu-bar {
-      display: block;
-      cursor: pointer;
+      display: block; /* Menampilkan tombol menu */
+      cursor: pointer; /* Kursor pointer */
   }
 
+  /* Menetapkan gaya untuk ikon di tombol menu saat layar kecil */
   .menu-bar i {
-      font-size: 2rem;
-      color: var(--primary-color);
+      font-size: 2rem; /* Ukuran font */
+      color: var(--primary-color); /* Warna ikon */
   }
 
+  /* Menetapkan gaya untuk kontainer tentang saat layar kecil */
   .about-container {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+      flex-direction: column; /* Penataan konten menjadi kolom */
+      align-items: center; /* Penataan konten tengah */
+      text-align: center; /* Penataan teks tengah */
   }
 
+  /* Menetapkan gaya untuk gambar dan konten tentang saat layar kecil */
   .about-image, .about-content {
-      flex: 1 1 100%;
-      margin: 1rem 0;
+      flex: 1 1 100%; /* Fleksibilitas */
+      margin: 1rem 0; /* Margin */
   }
 
+  /* Menetapkan gaya untuk paragraf dalam konten tentang saat layar kecil */
   .about-content p {
-      font-size: 1.4rem;
-      line-height: 1.4;
+      font-size: 1.4rem; /* Ukuran font */
+      line-height: 1.4; /* Tinggi baris */
   }
 
+  /* Menetapkan gaya untuk footer saat layar kecil */
   footer {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 2rem 1rem;
+      flex-direction: column; /* Penataan konten menjadi kolom */
+      align-items: center; /* Penataan konten tengah */
+      text-align: center; /* Penataan teks tengah */
+      padding: 2rem 1rem; /* Padding */
   }
 
+  /* Menetapkan gaya untuk bagian kiri, tengah, dan media footer saat layar kecil */
   footer .footer-left, footer .footer-center, footer .footer-media {
-      flex: 1 1 100%;
-      margin: 1rem 0;
-      padding: 0;
+      flex: 1 1 100%; /* Fleksibilitas */
+      margin: 1rem 0; /* Margin */
+      padding: 0; /* Padding */
   }
 
+  /* Menetapkan gaya untuk div dalam bagian tengah footer saat layar kecil */
   footer .footer-center div {
-      justify-content: center;
+      justify-content: center; /* Penataan konten tengah */
   }
 
+  /* Menetapkan gaya untuk tautan media dalam footer saat layar kecil */
   .footer-media a {
-      margin: 0 0.5rem;
+      margin: 0 0.5rem; /* Margin */
   }
 
+  /* Menetapkan gaya untuk bagian bawah footer saat layar kecil */
   .footer-bottom {
-      flex-direction: column;
-      align-items: center;
-      margin-top: 1rem;
-      padding: 1rem 0;
+      flex-direction: column; /* Penataan konten menjadi kolom */
+      align-items: center; /* Penataan konten tengah */
+      margin-top: 1rem; /* Jarak atas */
+      padding: 1rem 0; /* Padding */
   }
 
+  /* Menetapkan gaya untuk halaman depan saat layar kecil */
   .home {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      color: var(--white);
-      text-align: center;
-      position: relative;
-      padding: 2rem;
+      display: flex; /* Tampilan fleksibel */
+      flex-direction: column; /* Penataan konten menjadi kolom */
+      align-items: center; /* Penataan konten tengah */
+      justify-content: center; /* Penataan konten tengah */
+      min-height: 100vh; /* Tinggi minimum 100% viewport tinggi */
+      color: var(--white); /* Warna teks */
+      text-align: center; /* Penataan teks tengah */
+      position: relative; /* Posisi relatif */
+      padding: 2rem; /* Padding */
   }
 
+  /* Menetapkan gaya untuk konten halaman depan saat layar kecil */
   .home .content {
-      z-index: 2;
-      padding: 2rem;
+      z-index: 2; /* Indeks z */
+      padding: 2rem; /* Padding */
   }
 
+  /* Menetapkan gaya untuk judul dalam konten halaman depan saat layar kecil */
   .home .content h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      font-size: 3rem; /* Ukuran font */
+      margin-bottom: 1rem; /* Jarak bawah */
   }
 
+  /* Menetapkan gaya untuk paragraf dalam konten halaman depan saat layar kecil */
   .home .content p {
-      font-size: 1.6rem;
-      margin-bottom: 2rem;
+      font-size: 1.6rem; /* Ukuran font */
+      margin-bottom: 2rem; /* Jarak bawah */
   }
 
+  /* Menetapkan gaya untuk tombol dalam konten halaman depan saat layar kecil */
   .home .content .btn {
-      padding: 1rem 2rem;
-      font-size: 1.6rem;
+      padding: 1rem 2rem; /* Padding */
+      font-size: 1.6rem; /* Ukuran font */
   }
 }
