@@ -509,8 +509,8 @@ text-align: justify; /* Penataan teks rata kanan kiri */
 /* Menetapkan gaya untuk tautan media sosial */
 .social-icons a {
   color: white; /* Warna teks */
-  margin: 0 10px; /* Margin */
-  font-size: 1.5rem; /* Ukuran font */
+  margin: 0 1rem; /* Margin */
+  font-size: 1.7rem; /* Ukuran font */
   transition: color 0.3s ease; /* Transisi warna */
 }
 
