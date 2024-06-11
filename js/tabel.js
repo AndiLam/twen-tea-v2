@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 selectedCategories.push(checkbox.value);
             }
         });
-        return selectedCategories.length ? selectedCategories : ['all'];
+        return selectedCategories;
     }
     
     // Get selected locations
@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 selectedLocations.push(checkbox.value);
             }
         });
-        return selectedLocations.length ? selectedLocations : ['all'];
+        return selectedLocations;
     }
     
     // Get selected days
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 selectedDays.push(checkbox.value);
             }
         });
-        return selectedDays.length ? selectedDays : ['all'];
+        return selectedDays;
     }
     
     // Get selected period
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 selectedPeriod.push(checkbox.value);
             }
         });
-        return selectedPeriod.length ? selectedPeriod : ['all'];
+        return selectedPeriod;
     }
   
     // Filter transactions based on user input
@@ -204,15 +204,19 @@ document.addEventListener("DOMContentLoaded", function() {
         const selectedDays = getSelectedDays();
         const selectedPeriod = getSelectedPeriod();
 
-        filteredTransactions = transactions.filter(transaction => {
-            const transactionDate = new Date(transaction.transaction_date);
-            const isDateValid = (!startDate || transactionDate >= startDate) && (!endDate || transactionDate <= endDate);
-            const isCategoryValid = selectedCategories.includes('all') || selectedCategories.includes(transaction.product_category);
-            const isLocationValid = selectedLocations.includes('all') || selectedLocations.includes(transaction.store_location);
-            const isDaysValid = selectedDays.includes('all') || selectedDays.includes(transaction.periode_hari);
-            const isPeriodValid = selectedPeriod.includes('all') || selectedPeriod.includes(transaction.periode_waktu);
-            return isDateValid && isCategoryValid && isLocationValid && isDaysValid && isPeriodValid;
-        });
+        if (selectedCategories.length === 0 || selectedLocations.length === 0 || selectedDays.length === 0 || selectedPeriod.length === 0) {
+            filteredTransactions = [];
+        } else {
+            filteredTransactions = transactions.filter(transaction => {
+                const transactionDate = new Date(transaction.transaction_date);
+                const isDateValid = (!startDate || transactionDate >= startDate) && (!endDate || transactionDate <= endDate);
+                const isCategoryValid = selectedCategories.includes('all') || selectedCategories.includes(transaction.product_category);
+                const isLocationValid = selectedLocations.includes('all') || selectedLocations.includes(transaction.store_location);
+                const isDaysValid = selectedDays.includes('all') || selectedDays.includes(transaction.periode_hari);
+                const isPeriodValid = selectedPeriod.includes('all') || selectedPeriod.includes(transaction.periode_waktu);
+                return isDateValid && isCategoryValid && isLocationValid && isDaysValid && isPeriodValid;
+            });
+        }
 
         const searchTerm = searchInput.value.toLowerCase();
         filteredTransactions = filteredTransactions.filter(transaction => {

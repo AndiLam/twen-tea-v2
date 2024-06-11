@@ -31,161 +31,161 @@ document.addEventListener("DOMContentLoaded", function() {
         if (isLoggedIn !== 'true') {
             window.location.href = '../login/login.html';
         }
-
+        
     // Populate category and location checkboxes
-    function populateOptions() {
-        const categories = new Set();
-        const locations = new Set();
-        const days = new Set();
-        const period = new Set();
-    
-        transactions.forEach(transaction => {
-            categories.add(transaction.product_category);
-            locations.add(transaction.store_location);
-            days.add(transaction.periode_hari);
-            period.add(transaction.periode_waktu);
-        });
-    
+        function populateOptions() {
+            const categories = new Set();
+            const locations = new Set();
+            const days = new Set();
+            const period = new Set();
+        
+            transactions.forEach(transaction => {
+                categories.add(transaction.product_category);
+                locations.add(transaction.store_location);
+                days.add(transaction.periode_hari);
+                period.add(transaction.periode_waktu);
+            });
+        
         // Sort categories and locations in alphabetical order
-        const sortedCategories = Array.from(categories).sort((a, b) => a.localeCompare(b));
-        const sortedLocations = Array.from(locations).sort((a, b) => a.localeCompare(b));
-    
+            const sortedCategories = Array.from(categories).sort((a, b) => a.localeCompare(b));
+            const sortedLocations = Array.from(locations).sort((a, b) => a.localeCompare(b));
+        
         // Sort days in a specific order
-        const sortedDays = Array.from(days).sort((a, b) => {
-            const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-            return dayOrder.indexOf(a) - dayOrder.indexOf(b);
-        });
-    
+            const sortedDays = Array.from(days).sort((a, b) => {
+                const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                return dayOrder.indexOf(a) - dayOrder.indexOf(b);
+            });
+        
         // Sort periods in a specific order
-        const sortedPeriod = Array.from(period).sort((a, b) => {
-            const periodOrder = ['Pagi', 'Siang', 'Sore'];
-            return periodOrder.indexOf(a) - periodOrder.indexOf(b);
-        });
-    
-        sortedCategories.forEach(category => {
-            const label = document.createElement('label');
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.value = category;
-            checkbox.checked = true; // Default to checked, adjust as needed
-    
-            label.appendChild(checkbox);
-            label.appendChild(document.createTextNode(category));
-            categoryCheck.appendChild(label);
-        });
-    
-        sortedLocations.forEach(location => {
-            const label = document.createElement('label');
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.value = location;
-            checkbox.checked = true; // Default to checked, adjust as needed
-    
-            label.appendChild(checkbox);
-            label.appendChild(document.createTextNode(location));
-            locationCheck.appendChild(label);
-        });
-    
-        sortedDays.forEach(days => {
-            const label = document.createElement('label');
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.value = days;
-            checkbox.checked = true; // Default to checked, adjust as needed
-    
-            label.appendChild(checkbox);
-            label.appendChild(document.createTextNode(days));
-            daysCheck.appendChild(label);
-        });
-    
-        sortedPeriod.forEach(period => {
-            const label = document.createElement('label');
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.value = period;
-            checkbox.checked = true; // Default to checked, adjust as needed
-    
-            label.appendChild(checkbox);
-            label.appendChild(document.createTextNode(period));
-            periodCheck.appendChild(label);
-        });
-    
-        document.getElementById('category-container').addEventListener('click', function(event) {
-            if (event.target.tagName === 'INPUT') return;
-            this.classList.toggle('active');
-            const checkboxes = document.getElementById('category-checkboxes');
-            checkboxes.style.display = checkboxes.style.display === 'none' ? 'block' : 'none';
-        });
-    
-        document.getElementById('location-container').addEventListener('click', function(event) {
-            if (event.target.tagName === 'INPUT') return;
-            this.classList.toggle('active');
-            const checkboxes = document.getElementById('location-checkboxes');
-            checkboxes.style.display = checkboxes.style.display === 'none' ? 'block' : 'none';
-        });
-    
-        document.getElementById('days-container').addEventListener('click', function(event) {
-            if (event.target.tagName === 'INPUT') return;
-            this.classList.toggle('active');
-            const checkboxes = document.getElementById('days-checkboxes');
-            checkboxes.style.display = checkboxes.style.display === 'none' ? 'block' : 'none';
-        });
-    
-        document.getElementById('period-container').addEventListener('click', function(event) {
-            if (event.target.tagName === 'INPUT') return;
-            this.classList.toggle('active');
-            const checkboxes = document.getElementById('period-checkboxes');
-            checkboxes.style.display = checkboxes.style.display === 'none' ? 'block' : 'none';
-        });
-    }
-    
+            const sortedPeriod = Array.from(period).sort((a, b) => {
+                const periodOrder = ['Pagi', 'Siang', 'Sore'];
+                return periodOrder.indexOf(a) - periodOrder.indexOf(b);
+            });
+        
+            sortedCategories.forEach(category => {
+                const label = document.createElement('label');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = category;
+                checkbox.checked = true;
+        
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(category));
+                categoryCheck.appendChild(label);
+            });
+        
+            sortedLocations.forEach(location => {
+                const label = document.createElement('label');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = location;
+                checkbox.checked = true;
+        
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(location));
+                locationCheck.appendChild(label);
+            });
+        
+            sortedDays.forEach(days => {
+                const label = document.createElement('label');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = days;
+                checkbox.checked = true;
+        
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(days));
+                daysCheck.appendChild(label);
+            });
+        
+            sortedPeriod.forEach(period => {
+                const label = document.createElement('label');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = period;
+                checkbox.checked = true;
+        
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(period));
+                periodCheck.appendChild(label);
+            });
+        
+            document.getElementById('category-container').addEventListener('click', function(event) {
+                if (event.target.tagName === 'INPUT') return;
+                this.classList.toggle('active');
+                const checkboxes = document.getElementById('category-checkboxes');
+                checkboxes.style.display = checkboxes.style.display === 'none' ? 'block' : 'none';
+            });
+        
+            document.getElementById('location-container').addEventListener('click', function(event) {
+                if (event.target.tagName === 'INPUT') return;
+                this.classList.toggle('active');
+                const checkboxes = document.getElementById('location-checkboxes');
+                checkboxes.style.display = checkboxes.style.display === 'none' ? 'block' : 'none';
+            });
+        
+            document.getElementById('days-container').addEventListener('click', function(event) {
+                if (event.target.tagName === 'INPUT') return;
+                this.classList.toggle('active');
+                const checkboxes = document.getElementById('days-checkboxes');
+                checkboxes.style.display = checkboxes.style.display === 'none' ? 'block' : 'none';
+            });
+        
+            document.getElementById('period-container').addEventListener('click', function(event) {
+                if (event.target.tagName === 'INPUT') return;
+                this.classList.toggle('active');
+                const checkboxes = document.getElementById('period-checkboxes');
+                checkboxes.style.display = checkboxes.style.display === 'none' ? 'block' : 'none';
+            });
+        }
+        
     // Get selected categories
-    function getSelectedCategories() {
-        const checkboxes = document.querySelectorAll('#category-checkboxes input[type="checkbox"]');
-        const selectedCategories = [];
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked && checkbox.value !== 'all') {
-                selectedCategories.push(checkbox.value);
-            }
-        });
-        return selectedCategories.length ? selectedCategories : ['all'];
-    }
-    
+        function getSelectedCategories() {
+            const checkboxes = document.querySelectorAll('#category-checkboxes input[type="checkbox"]');
+            const selectedCategories = [];
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked && checkbox.value !== 'all') {
+                    selectedCategories.push(checkbox.value);
+                }
+            });
+            return selectedCategories;
+        }
+        
     // Get selected locations
-    function getSelectedLocations() {
-        const checkboxes = document.querySelectorAll('#location-checkboxes input[type="checkbox"]');
-        const selectedLocations = [];
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked && checkbox.value !== 'all') {
-                selectedLocations.push(checkbox.value);
-            }
-        });
-        return selectedLocations.length ? selectedLocations : ['all'];
-    }
-    
+        function getSelectedLocations() {
+            const checkboxes = document.querySelectorAll('#location-checkboxes input[type="checkbox"]');
+            const selectedLocations = [];
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked && checkbox.value !== 'all') {
+                    selectedLocations.push(checkbox.value);
+                }
+            });
+            return selectedLocations;
+        }
+        
     // Get selected days
-    function getSelectedDays() {
-        const checkboxes = document.querySelectorAll('#days-checkboxes input[type="checkbox"]');
-        const selectedDays = [];
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked && checkbox.value !== 'all') {
-                selectedDays.push(checkbox.value);
-            }
-        });
-        return selectedDays.length ? selectedDays : ['all'];
-    }
-    
+        function getSelectedDays() {
+            const checkboxes = document.querySelectorAll('#days-checkboxes input[type="checkbox"]');
+            const selectedDays = [];
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked && checkbox.value !== 'all') {
+                    selectedDays.push(checkbox.value);
+                }
+            });
+            return selectedDays;
+        }
+        
     // Get selected period
-    function getSelectedPeriod() {
-        const checkboxes = document.querySelectorAll('#period-checkboxes input[type="checkbox"]');
-        const selectedPeriod = [];
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked && checkbox.value !== 'all') {
-                selectedPeriod.push(checkbox.value);
-            }
-        });
-        return selectedPeriod.length ? selectedPeriod : ['all'];
-    }  
+        function getSelectedPeriod() {
+            const checkboxes = document.querySelectorAll('#period-checkboxes input[type="checkbox"]');
+            const selectedPeriod = [];
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked && checkbox.value !== 'all') {
+                    selectedPeriod.push(checkbox.value);
+                }
+            });
+            return selectedPeriod;
+        }
 
         // Filter transactions based on user input
         function filterTransactions() {
@@ -196,15 +196,20 @@ document.addEventListener("DOMContentLoaded", function() {
             const selectedDays = getSelectedDays();
             const selectedPeriod = getSelectedPeriod();
 
-            filteredTransactions = transactions.filter(transaction => {
-                const transactionDate = new Date(transaction.transaction_date);
-                const isDateValid = (!startDate || transactionDate >= startDate) && (!endDate || transactionDate <= endDate);
-                const isCategoryValid = selectedCategories.includes('all') || selectedCategories.includes(transaction.product_category);
-                const isLocationValid = selectedLocations.includes('all') || selectedLocations.includes(transaction.store_location);
-                const isDaysValid = selectedDays.includes('all') || selectedDays.includes(transaction.periode_hari);
-                const isPeriodValid = selectedPeriod.includes('all') || selectedPeriod.includes(transaction.periode_waktu);
-                return isDateValid && isCategoryValid && isLocationValid && isDaysValid && isPeriodValid;
-            });
+            // Ensure that no data is read if all checkboxes in any category are unchecked
+            if (selectedCategories.length === 0 || selectedLocations.length === 0 || selectedDays.length === 0 || selectedPeriod.length === 0) {
+                filteredTransactions = [];
+            } else {
+                filteredTransactions = transactions.filter(transaction => {
+                    const transactionDate = new Date(transaction.transaction_date);
+                    const isDateValid = (!startDate || transactionDate >= startDate) && (!endDate || transactionDate <= endDate);
+                    const isCategoryValid = selectedCategories.includes(transaction.product_category);
+                    const isLocationValid = selectedLocations.includes(transaction.store_location);
+                    const isDaysValid = selectedDays.includes(transaction.periode_hari);
+                    const isPeriodValid = selectedPeriod.includes(transaction.periode_waktu);
+                    return isDateValid && isCategoryValid && isLocationValid && isDaysValid && isPeriodValid;
+                });
+            }
 
             const searchTerm = searchInput.value.toLowerCase();
             filteredTransactions = filteredTransactions.filter(transaction => {
@@ -265,11 +270,11 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
       // Toggle dropdown menu
-      window.toggleDropdown = function(event) {
-        event.preventDefault();
-        const dropdownMenu = event.currentTarget.nextElementSibling;
-        dropdownMenu.classList.toggle('show');
-    };
+        window.toggleDropdown = function(event) {
+            event.preventDefault();
+            const dropdownMenu = event.currentTarget.nextElementSibling;
+            dropdownMenu.classList.toggle('show');
+        };
 
         // Function to update total values
         function updateTotals(transactions) {
