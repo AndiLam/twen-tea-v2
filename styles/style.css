@@ -15,8 +15,8 @@
 
 /* Menetapkan gaya dasar untuk semua elemen */
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0; /* Margin */
+    padding: 0; /* padding */
     box-sizing: border-box;
     font-family: 'Nunito', sans-serif; /* Menggunakan font Nunito */
 }
