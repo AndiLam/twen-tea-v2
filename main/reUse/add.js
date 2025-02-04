@@ -1,7 +1,7 @@
 var reUse = 
     '<nav class="nav" id="sidebar">'+
         '<div class="logo">'+
-            '<span class="logo-icon"><img src="../assets/img/icon/kopi.png"></span>'+
+            '<span class="logo-icon"><img src="../assets/img/icon/logo.png"></span>'+
             '<span class="logo-text"><h2>Admin</h2></span>'+
         '</div>'+
         '<ul>'
@@ -22,7 +22,7 @@ var reuse =
         '<div class="topbar">'+
             '<div class="toggle" onclick="toggleSidebar();"><i class="fas fa-bars"></i></div>'+
             '<div class="user">'+
-                '<img src="../assets/img/icon/Revou-alasan.original.png">'+
+                '<img src="../assets/img/icon/logo.png">'+
                 '<div class="user-menu" id="userMenu">'+
                     '<a href="#" onclick="confirmLogout(event)">Logout</a>'+
                 '</div>'+

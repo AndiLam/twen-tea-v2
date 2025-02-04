@@ -167,4 +167,15 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  const savedData = localStorage.getItem('formData');
+  if (savedData) {
+      const formData = JSON.parse(savedData);
+      const imgElement = document.getElementById('img-promo')
+      if(imgElement){
+        imgElement.src = `./../assets/img/promo/${formData.highCategory}-${formData.lowCategory}.jpg`
+      } else{
+        console.error('Element with ID "myImage" not found.');
+      }
+  }
 });

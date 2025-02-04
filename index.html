@@ -6,20 +6,20 @@
     <title>Coffee TwenTea - Beranda</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="icon" href="./assets/img/icon/kopi.png">
+    <link rel="icon" href="./assets/img/icon/logo.png">
+    <script src="./js/lp.js" defer></script>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <a href="./index.html"><img src="./assets/img/icon/kopi.png" alt="Coffee Shop Logo"></a>
+                <a href="./index.html"><img src="./assets/img/icon/logo.png" alt="Coffee Shop Logo"></a>
             </div>
             <ul class="navbar hidden">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about" class="bout">Our Story</a></li>
                 <li><a href="#store">Store</a></li>
                 <li><a href="#product">Product</a></li>
-                <li><a href="#team">Team20</a></li>
                 <li><a href="./login/login.html"><i class="fa-solid fa-chart-line"></i></a></li>
             </ul>
             <div class="menu-bar" id="menu-bar">
@@ -36,9 +36,17 @@
                 <video src="./assets/vid/video-kopi.mp4" id="video-slider" loop autoplay muted></video>
             </div>
             <div class="content">
-                <h1>COFFEE TWENTEA</h1>
+                <h1>BARISTA ANALYTICS</h1>
                 <p>Your destination for the best Coffee & Tea experience in every UNIVERSE.</p>
                 <a href="#store" class="btn">Discover More</a>
+            </div>
+        </section>
+        <section class="about" id="promo">
+            <h2 class="heading">Our Promo</h2>
+            <div class="">
+                <div class="">
+                    <img id="img-promo" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
             </div>
         </section>
         <!-- About Section -->
@@ -46,11 +54,11 @@
             <h2 class="heading">Our Story</h2>
             <div class="about-container">
                 <div class="about-image">
-                    <img src="./assets/img/The_Krusty_Krab.png" alt="Our Story">
+                    <img src="./assets/img/toko.jpeg" alt="Our Story">
                 </div>
                 <div class="about-content">
-                    <p>Coffee Shop TwenTea features an elegant design with chic wooden furniture, warm lighting, and artistic wall hangings. The seating areas are varied, ranging from small tables for two to large sofas suitable for groups. Soft music often plays in the background, adding to the cafe's relaxed and cozy feel.</p>
-                    <p>Coffee Shop TwenTea offers a wide selection of coffee made with the best techniques. From classic espresso, cappuccino, latte, to various specialty coffee variants with a unique twist. They also provide non-coffee options such as tea, hot chocolate and smoothies. To complete the coffee experience, the cafe serves a variety of delicious cakes and pastries, as well as appetizing snacks and brunch options.</p>
+                    <p>Coffee Shop Barista Analytics features an elegant design with chic wooden furniture, warm lighting, and artistic wall hangings. The seating areas are varied, ranging from small tables for two to large sofas suitable for groups. Soft music often plays in the background, adding to the cafe's relaxed and cozy feel.</p>
+                    <p>Coffee Shop Barista Analytics offers a wide selection of coffee made with the best techniques. From classic espresso, cappuccino, latte, to various specialty coffee variants with a unique twist. They also provide non-coffee options such as tea, hot chocolate and smoothies. To complete the coffee experience, the cafe serves a variety of delicious cakes and pastries, as well as appetizing snacks and brunch options.</p>
                     <p>This coffee shop is equipped with free Wi-Fi, making it ideal for those who need to work or study while enjoying coffee. Some of its branches also provide meeting rooms that can be rented out for special occasions.</p>
                 </div>
             </div>
@@ -75,287 +83,82 @@
                 </div>
             </div>
         </section>
-
-        <!-- Team Section -->
-        <section class="team" id="team">
-            <h1 class="heading"><span>Team 20 Jayapura</span></h1>
-            <div class="team-carousel">
-                <div class="carousel-track-container">
-                  <ul class="carousel-track">
-                    <li class="carousel-slide current-slide">
-                      <div class="slide-content">
-                        <img src="./assets/img/orang/syauqi.jpg" alt="Team Member 1">
-                        <div class="overlay">
-                          <div class="overlay-content">
-                            <h2>Mochammad Syauqi Irawan Suhardarma</h2>
-                            <h3>Institut Teknologi Sepuluh Nopember</h3>
-                            <p>Position: Project Leader</p>
-                            <div class="social-icons">
-                              <a href="https://www.linkedin.com/in/syauqi" target="_blank">
-                                <i class="fa-brands fa-linkedin"></i>
-                              </a>
-                              <a href="https://github.com/syauqiirawan" target="_blank">
-                                <i class="fa-brands fa-github"></i>
-                              </a>
-                              <a href="syauqi.irawan59@gmail.com" target="_blank">
-                                <i class="fas fa-envelope"></i>
-                              </a>
+            <!-- Team Section -->
+            <section class="team" id="team">
+                <h1 class="heading"><span>Kelompok 1 Pemrograman Sains Data</span></h1>
+                <div class="team-carousel">
+                    <div class="carousel-track-container">
+                      <ul class="carousel-track">
+                        <li class="carousel-slide current-slide">
+                          <div class="slide-content">
+                            <img src="./assets/img/orang/anomali.jpg" alt="Team Member 1">
+                            <div class="overlay">
+                              <div class="overlay-content">
+                                <h2>10121295 - Rifai Nugroho</h2>
+                                <h3>Universitas Komputer Indonesia</h3>
+                                <p>Position: UI/UX Designer</p>
+                                <p>Contribution: 100%</p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="carousel-slide">
-                      <div class="slide-content">
-                        <img src="./assets/img/orang/andi.jpg" alt="Team Member 2">
-                        <div class="overlay">
-                            <div class="overlay-content">
-                                <h2>Andi Muhamad Nur Ilhami</h2>
-                                <h3>Universitas Komputer Indonesia</h3>
-                                <p>Position: Deployment</p>
-                                <div class="social-icons">
-                                    <a href="https://www.linkedin.com/in/andi-muhamad-nur-ilhami" target="_blank">
-                                      <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="https://github.com/AndiLam" target="_blank">
-                                      <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="https://www.facebook.com/profile.php?id=100022120238611" target="_blank">
-                                      <i class="fa-brands fa-facebook"></i>
-                                    </a>
+                        </li>
+                        <li class="carousel-slide">
+                          <div class="slide-content">
+                            <img src="./assets/img/orang/nawaf.jpg" alt="Team Member 2">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <h2>10121298 - Nawaf Saeful Anwar</h2>
+                                    <h3>Universitas Komputer Indonesia</h3>
+                                    <p>Position: Back End</p>
+                                    <p>Contribution: 100%</p>
                                 </div>
                             </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="carousel-slide">
-                      <div class="slide-content">
-                        <img src="./assets/img/orang/vio.JPG" alt="Team Member 3">
-                        <div class="overlay">
-                            <div class="overlay-content">
-                              <h2>Violeta Chaitra Orvala</h2>
-                              <h3>Politeknik Negeri Semarang</h3>
-                              <p>Position: Front End Engineer</p>
-                              <div class="social-icons">
-                                  <a href="https://www.linkedin.com/in/violeta-chaitra-orvala-2ba4512a2/" target="_blank">
-                                    <i class="fab fa-linkedin"></i>
-                                  </a>
-                                  <a href="https://github.com/violetachaitra" target="_blank">
-                                    <i class="fab fa-github"></i>
-                                  </a>
-                                  <a href="mailto:violetacorvala@gmail.com">
-                                    <i class="fas fa-envelope"></i>
-                                  </a>
+                          </div>
+                        </li>
+                        <li class="carousel-slide">
+                          <div class="slide-content">
+                            <img src="./assets/img/orang/andi.JPG" alt="Team Member 3">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <h2>10121304 - Andi Muhamad Nur Ilhami</h2>
+                                    <h3>Universitas Komputer Indonesia</h3>
+                                    <p>Position: Front End</p>
+                                    <p>Contribution: 100%</p>
                                 </div>
                             </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="carousel-slide">
-                      <div class="slide-content">
-                        <img src="./assets/img/orang/syntia.jpg" alt="Team Member 4">
-                        <div class="overlay">
-                            <div class="overlay-content">
-                                <h2>Syntia Renta Arvandhi</h2>
-                                <h3>Universitas Udayana</h3>
-                                <p>Position: Front End Engineer</p>
-                                <div class="social-icons">
-                                    <a href="https://www.linkedin.com/in/syntia-renta-arvandhi-9417592b1/" target="_blank">
-                                      <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="https://github.com/syntiararv16" target="_blank">
-                                      <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="https://www.instagram.com/syntiararv/" target="_blank">
-                                      <i class="fa-brands fa-instagram"></i>
-                                    </a>
+                          </div>
+                        </li>
+                        <li class="carousel-slide">
+                          <div class="slide-content">
+                            <img src="./assets/img/orang/julpan.jpg" alt="Team Member 4">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <div class="overlay-content">
+                                        <h2>10121306 - Julfan Abdurahman</h2>
+                                        <h3>Universitas Komputer Indonesia</h3>
+                                        <p>Position: Data Analyst</p>
+                                        <p>Contribution: 100%</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="carousel-slide">
-                      <div class="slide-content">
-                        <img src="./assets/img/orang/aisyah.jpg" alt="Team Member 5">
-                        <div class="overlay">
-                            <div class="overlay-content">
-                                <h2>Aisyah Nur Asman</h2>
-                                <h3>Universitas Negeri Padang</h3>
-                                <p>Position: Front End Engineer</p>
-                                <div class="social-icons">
-                                    <a href="https://www.linkedin.com/in/aisyah-nur-asman-375078253/" target="_blank">
-                                      <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="https://www.instagram.com/asyhnrsmn/" target="_blank">
-                                      <i class="fa-brands fa-instagram"></i>
-                                    </a>
-                                    <a href="https://www.youtube.com/@aisyahnurasman7862" target="_blank">
-                                      <i class="fa-brands fa-youtube"></i>
-                                    </a>
+                          </div>
+                        </li>
+                        <li class="carousel-slide">
+                          <div class="slide-content">
+                            <img src="./assets/img/orang/cecep.jpg" alt="Team Member 5">
+                            <div class="overlay">
+                                <div class="overlay-content">
+                                    <div class="overlay-content">
+                                        <h2>10121307 - Cecep Ramdan Suryadi</h2>
+                                        <h3>Universitas Komputer Indonesia</h3>
+                                        <p>Position: Data Analyst</p>
+                                        <p>Contribution: 100%</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="carousel-slide">
-                      <div class="slide-content">
-                        <img src="./assets/img/orang/atiqah.jpg" alt="Team Member 6">
-                        <div class="overlay">
-                            <div class="overlay-content">
-                                <h2>Atiqah Muthma'ina</h2>
-                                <h3>Universitas Diponegoro</h3>
-                                <p>Position: Front End Engineer</p>
-                                <div class="social-icons">
-                                    <a href="https://www.linkedin.com/in/atiqah-muthma-ina-499a26299/" target="_blank">
-                                      <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="https://github.com/AtiqahMuthmaina" target="_blank">
-                                      <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="https://www.instagram.com/atqhmuth_/" target="_blank">
-                                      <i class="fa-brands fa-instagram"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="carousel-slide">
-                      <div class="slide-content">
-                        <img src="./assets/img/orang/vania.jpg" alt="Team Member 7">
-                        <div class="overlay">
-                            <div class="overlay-content">
-                                <h2>Vania Eka Putri Febriani</h2>
-                                <h3>Universitas Negeri Semarang</h3>
-                                <p>Position: Quality Assurance</p>
-                                <div class="social-icons">
-                                    <a href="https://www.linkedin.com/in/vania-eka-566aab265/" target="_blank">
-                                      <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="https://github.com/vaniaputrif" target="_blank">
-                                      <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="https://www.instagram.com/vaniaputrif_/" target="_blank">
-                                      <i class="fa-brands fa-instagram"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="carousel-slide">
-                      <div class="slide-content">
-                        <img src="./assets/img/orang/iwan.jpg" alt="Team Member 8">
-                        <div class="overlay">
-                            <div class="overlay-content">
-                                <h2>Iwan Gemyanto</h2>
-                                <h3>Institut Teknologi &  Bisnis Palcomtech</h3>
-                                <p>Position: Quality Assurance</p>
-                                <div class="social-icons">
-                                    <a href="https://www.linkedin.com/in/iwan-gemyanto-9a36612a9/" target="_blank">
-                                      <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="https://github.com/IwanProV" target="_blank">
-                                      <i class="fab fa-github"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="carousel-slide">
-                      <div class="slide-content">
-                        <img src="./assets/img/orang/shabe.jpg" alt="Team Member 9">
-                        <div class="overlay">
-                            <div class="overlay-content">
-                                <h2>Shabilah Tri Haviani</h2>
-                                <h3>Universitas Teknologi Bandung </h3>
-                                <p>Position: Quality Assurance</p>
-                                <div class="social-icons">
-                                    <a href="https://www.linkedin.com/in/shabilahtrihaviani/" target="_blank">
-                                      <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="https://github.com/Shabilahth" target="_blank">
-                                      <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="https://www.instagram.com/_shabilahth/" target="_blank">
-                                      <i class="fa-brands fa-instagram"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="carousel-slide">
-                      <div class="slide-content">
-                        <img src="./assets/img/orang/galih.jpg" alt="Team Member 2">
-                        <div class="overlay">
-                            <div class="overlay-content">
-                                <h2>Galih lintang kanugrah</h2>
-                                <h3>Universitas Airlangga</h3>
-                                <p>Position: Pitch Deck</p>
-                                <div class="social-icons">
-                                    <a href="https://www.linkedin.com/in/galih-lintang-kanugrah-559aa42b5/" target="_blank">
-                                      <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="https://github.com/galihkanugrah" target="_blank">
-                                      <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="https://www.instagram.com/galihkanugrah/" target="_blank">
-                                      <i class="fa-brands fa-instagram"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="carousel-slide">
-                      <div class="slide-content">
-                        <img src="./assets/img/orang/daffa.JPG" alt="Team Member 11">
-                        <div class="overlay">
-                            <div class="overlay-content">
-                                <h2>Muhammad Daffa Izziddin</h2>
-                                <h3>Universitas Brawijaya</h3>
-                                <p>Position: Pitch Deck</p>
-                                <div class="social-icons">
-                                    <a href="https://www.linkedin.com/in/daffaizn/" target="_blank">
-                                      <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="https://github.com/daffaizdn" target="_blank">
-                                      <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="https://www.instagram.com/daffaizdn_/" target="_blank">
-                                      <i class="fa-brands fa-instagram"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="carousel-slide">
-                      <div class="slide-content">
-                        <img src="./assets/img/orang/ratul.jpg" alt="Team Member 12">
-                        <div class="overlay">
-                            <div class="overlay-content">
-                                <h2>Zumratul Hasana</h2>
-                                <h3>Universitas Sriwijaya</h3>
-                                <p>Position: Pitch Deck</p>
-                                <div class="social-icons">
-                                    <a href="https://www.linkedin.com/in/zumratul-hasana-25066b2b1/" target="_blank">
-                                      <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="https://github.com/Zumratulhasana" target="_blank">
-                                      <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="https://www.instagram.com/zrhasana_/" target="_blank">
-                                      <i class="fa-brands fa-instagram"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>                
+                          </div>
+                        </li>
+                    </ul>                
                 </div>
                 <div class="carousel-buttons">
                     <button class="carousel-button left-button">&#9664;</button>
@@ -364,18 +167,17 @@
             </div>
         </section>
     </main>
-
     <footer class="footer">
         <div class="footer-left">
             <div class="credit-cards">
-                <a href="https://revou.co/"><img src="./assets/img/icon/Revou-alasan.original.png" alt="Credit Cards"></a>
+                <a href=""><img src="./assets/img/icon/logo.png" alt="Credit Cards"></a>
             </div>
         </div>
         <div class="footer-center">
             <h3>Contact Us</h3>
               <div>
                   <i class="fa fa-map-marker"></i>
-                  <p><span>Our Universe</span></p>
+                  <p><span>UNIKOM</span></p>
               </div>
               <div>
                   <i class="fa fa-phone"></i>
@@ -383,21 +185,21 @@
               </div>
               <div>
                   <i class="fa fa-envelope"></i>
-                  <p><a href="mailto:team20.jayapura@gmail.com">team20.jayapura@gmail.com</a></p>
+                  <p><a href="mailto:barista.analytics@gmail.com">barista.analytics@gmail.com</a></p>
               </div>
           </div>
           <div class="footer-media">
-            <a href="https://www.youtube.com/@revoudotco" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://www.facebook.com/revoU.co" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://twitter.com/revoudotco" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></i></a>
-            <a href="https://instagram.com/revou_id" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://github.com/Kampus-Merdeka-Software-Engineering/km-feb24-section-jayapura-team-20" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+            <a href="" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+            <a href="" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
+            <a href="" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></i></a>
+            <a href="" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+            <a href="" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
         </div>
         <div class="footer-bottom">
-            <p class="footer-copyright"><i class="fa-regular fa-copyright"></i> 2024 TEAM 20 JAYAPURA, All Rights Reserved</p>
+            <p class="footer-copyright"><i class="fa-regular fa-copyright"></i> 2025 BARISTA ANALYTICS, All Rights Reserved</p>
         </div>
         </div>
     </footer>
-    <script src="./js/lp.js" defer></script>    
+    <!-- <script src="./js/lp.js" defer></script>     -->
   </body>
 </html>

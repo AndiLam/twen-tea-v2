@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('errorMessage');
     
-            const validEmail = 'team20.jayapura@gmail.com';
-            const validPassword = 'jaya20x';
+            const validEmail = 'barista123@gmail.com';
+            const validPassword = 'analytics123';
     
             if (email === validEmail && password === validPassword) {
                 alert('Login successful');

@@ -279,9 +279,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         updateTotals(filteredTransactions);
         SalesChart(filteredTransactions);
-        SalesTrendChart(filteredTransactions);
         MapChart(filteredTransactions);
         ProductChart(filteredTransactions);
+        CoffeeTypesChart(filteredTransactions);
         SalesTimeChart(filteredTransactions);
         SalesPriceChart(filteredTransactions);
         AnalysisChart(filteredTransactions);
@@ -384,143 +384,44 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Trend location
-    const ctxx = document.getElementById("salesTrend").getContext("2d");
-    let salesTrendChart;
-
-    function SalesTrendChart(transactions) {
-        const processedData = {};
-        transactions.forEach((item) => {
-            const date = item.transaction_date;
-            const location = item.store_location;
-            const value = parseFloat(item.transaction_value);
-
-            if (!processedData[date]) {
-                processedData[date] = {};
-            }
-            if (!processedData[date][location]) {
-                processedData[date][location] = 0;
-            }
-
-            processedData[date][location] += value;
-        });
-
-        const labels = [];
-        const hellsKitchenData = [];
-        const astoriaData = [];
-        const lowerManhattanData = [];
-
-        // Generate labels for the X-axis and data for the Y-axis
-        for (let d = new Date("2023-01-01"); d <= new Date("2023-06-30"); d.setDate(d.getDate() + 1)) {
-            const dateStr = d.toISOString().split("T")[0];
-            labels.push(dateStr);
-            hellsKitchenData.push(processedData[dateStr] ? processedData[dateStr]["Hell's Kitchen"] || 0 : 0);
-            astoriaData.push(processedData[dateStr] ? processedData[dateStr]["Astoria"] || 0 : 0);
-            lowerManhattanData.push(processedData[dateStr] ? processedData[dateStr]["Lower Manhattan"] || 0 : 0);
-        }
-
-        const datasets = [
-            {
-                label: "Hell's Kitchen",
-                data: hellsKitchenData,
-                borderColor: "#0072F0",
-                backgroundColor: "rgba(0, 0, 255, 0.1)",
-                fill: false,
-            },
-            {
-                label: "Astoria",
-                data: astoriaData,
-                borderColor: "#00B6CB",
-                backgroundColor: "rgba(0, 255, 255, 0.1)",
-                fill: false,
-            },
-            {
-                label: "Lower Manhattan",
-                data: lowerManhattanData,
-                borderColor: "#F10096",
-                backgroundColor: "rgba(255, 0, 255, 0.1)",
-                fill: false,
-            },
-        ];
-
-        if (salesTrendChart) {
-            salesTrendChart.data.labels = labels;
-            salesTrendChart.data.datasets = datasets;
-            salesTrendChart.update();
-        } else {
-            salesTrendChart = new Chart(ctxx, {
-                type: "line",
-                data: {
-                    labels: labels,
-                    datasets: datasets,
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: "Date",
-                            },
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: "Transaction Value",
-                            },
-                            beginAtZero: true,
-                        },
-                    },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: "top",
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    return context.dataset.label + ": $" + context.raw.toFixed(2);
-                                },
-                            },
-                        },
-                    },
-                },
-            });
-        }
-    }
-
-    // Sales percentage
     const ctx1 = document.getElementById("salesPercentage").getContext("2d");
     let mapChart;
-
+    
     function MapChart(transactions) {
         const locationGroups = transactions.reduce((acc, item) => {
-            acc[item.store_location] = acc[item.store_location] || 0;
-            acc[item.store_location] += parseFloat(item.transaction_value);
+            acc[item.store_location] = acc[item.store_location] || { sales: 0, revenue: 0 };
+            acc[item.store_location].sales += parseInt(item.transaction_qty);
+            acc[item.store_location].revenue += parseFloat(item.transaction_value);
             return acc;
         }, {});
-
+    
         const labels = Object.keys(locationGroups);
-        const values = Object.values(locationGroups);
-
-        const total = values.reduce((acc, value) => acc + value, 0);
-        const percentages = values.map((value) => (value / total) * 100);
-
-        const colors = ["#0072F0", "#F10096", "#00B6CB"];
-
+        const salesData = labels.map(label => locationGroups[label].sales);
+        const revenueData = labels.map(label => locationGroups[label].revenue);
+    
+        const colors = ["#72B7F0", "#F28E96"];
+    
         if (mapChart) {
             mapChart.data.labels = labels;
-            mapChart.data.datasets[0].data = percentages;
+            mapChart.data.datasets[0].data = salesData;
+            mapChart.data.datasets[1].data = revenueData;
             mapChart.update();
         } else {
             mapChart = new Chart(ctx1, {
-                type: "pie",
+                type: "bar",
                 data: {
                     labels: labels,
                     datasets: [
                         {
-                            data: percentages,
-                            backgroundColor: colors,
+                            label: "Total Sales",
+                            data: salesData,
+                            backgroundColor: colors[0],
+                            borderWidth: 1,
+                        },
+                        {
+                            label: "Total Revenue",
+                            data: revenueData,
+                            backgroundColor: colors[1],
                             borderWidth: 1,
                         },
                     ],
@@ -529,45 +430,48 @@ document.addEventListener("DOMContentLoaded", function() {
                     responsive: true,
                     plugins: {
                         legend: {
-                            position: "right",
+                            position: "top",
                         },
                         tooltip: {
                             callbacks: {
                                 label: function (tooltipItem) {
-                                    return `${tooltipItem.label}: ${tooltipItem.raw.toFixed(1)}%`;
+                                    return `${tooltipItem.dataset.label}: ${tooltipItem.raw}`;
                                 },
                             },
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
                         },
                     },
                 },
             });
         }
     }
-
+        
     // Product
     const ctx2 = document.getElementById("product").getContext("2d");
     let productChart;
-
+    
     function ProductChart(transactions) {
         const categories = ["Coffee", "Tea", "Bakery", "Drinking Chocolate", "Flavours", "Coffee beans", "Loose Tea", "Branded", "Packaged Chocolate"];
-
+    
         const transactionCounts = {};
         categories.forEach((category) => (transactionCounts[category] = 0));
-
+    
         transactions.forEach((transaction) => {
             const category = transaction.product_category;
             const qty = parseInt(transaction.transaction_qty);
-
+    
             if (categories.includes(category)) {
                 transactionCounts[category] += qty;
             }
         });
-
-        const totalTransactions = Object.values(transactionCounts).reduce((a, b) => a + b, 0);
-
+    
         const labels = categories;
-        const transactionData = labels.map((label) => (transactionCounts[label] / totalTransactions) * 100);
-
+        const transactionData = labels.map((label) => transactionCounts[label]);
+    
         if (productChart) {
             productChart.data.labels = labels;
             productChart.data.datasets[0].data = transactionData;
@@ -579,30 +483,25 @@ document.addEventListener("DOMContentLoaded", function() {
                     labels: labels,
                     datasets: [
                         {
-                            label: "Transaction Quantity (%)",
+                            label: "Total Transactions",
                             data: transactionData,
-                            backgroundColor: "#388e3c",
-                            borderColor: "#388e3c",
+                            backgroundColor: "rgba(100, 181, 246, 0.6)", // Warna biru transparan
+                            borderColor: "#64b5f6",
                             borderWidth: 1,
                         },
                     ],
                 },
                 options: {
-                    indexAxis: "y",
+                    indexAxis: "x", // Menggunakan sumbu x untuk jumlah transaksi
                     scales: {
-                        x: {
+                        y: {
                             beginAtZero: true,
-                            ticks: {
-                                callback: function (value) {
-                                    return value + "%";
-                                },
-                            },
                             title: {
                                 display: true,
-                                text: "Percentage",
+                                text: "Total Transactions",
                             },
                         },
-                        y: {
+                        x: {
                             beginAtZero: true,
                             title: {
                                 display: true,
@@ -614,9 +513,16 @@ document.addEventListener("DOMContentLoaded", function() {
                         tooltip: {
                             callbacks: {
                                 label: function (context) {
-                                    const percentage = context.raw.toFixed(2);
-                                    return `${percentage}%`;
+                                    return `Total: ${context.raw}`;
                                 },
+                            },
+                        },
+                        datalabels: {
+                            anchor: "end",
+                            align: "top",
+                            formatter: (value) => value,
+                            font: {
+                                weight: "bold",
                             },
                         },
                     },
@@ -625,6 +531,85 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    const ctx6 = document.getElementById("coffeeTypes").getContext("2d");
+    let coffeeTypesChart;
+    
+    function CoffeeTypesChart(transactions) {
+        // Mengelompokkan transaksi berdasarkan jenis produk (product_type)
+        const coffeeData = transactions.reduce((acc, transaction) => {
+            const productType = transaction.product_type;
+            if (acc[productType]) {
+                acc[productType] += parseInt(transaction.transaction_qty); // Jumlahkan berdasarkan quantity transaksi
+            } else {
+                acc[productType] = parseInt(transaction.transaction_qty);
+            }
+            return acc;
+        }, {});
+    
+        // Ambil label (product_type) dan data (jumlah transaksi)
+        const labels = Object.keys(coffeeData);
+        const transactionData = Object.values(coffeeData);
+    
+        // Cek apakah chart sudah ada, jika sudah update data, jika belum buat chart baru
+        if (coffeeTypesChart) {
+            coffeeTypesChart.data.labels = labels;
+            coffeeTypesChart.data.datasets[0].data = transactionData;
+            coffeeTypesChart.update();
+        } else {
+            coffeeTypesChart = new Chart(ctx6, {
+                type: "bar",
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: "Number of Transactions",
+                            data: transactionData,
+                            backgroundColor: "rgba(255, 159, 64, 0.6)", // Warna oranye transparan
+                            borderColor: "#ff9f40",
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+                options: {
+                    indexAxis: "x", // Menggunakan sumbu x untuk jumlah transaksi
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: "Number of Transactions",
+                            },
+                        },
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: "Product Type",
+                            },
+                        },
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return `Total: ${context.raw}`;
+                                },
+                            },
+                        },
+                        datalabels: {
+                            anchor: "end",
+                            align: "top",
+                            formatter: (value) => value,
+                            font: {
+                                weight: "bold",
+                            },
+                        },
+                    },
+                },
+            });
+        }
+    }
+    
     // Sales time
     const ctx3 = document.getElementById("salesTime").getContext("2d");
     let salesTimeChart;
@@ -956,6 +941,66 @@ document.addEventListener("DOMContentLoaded", function() {
             return date.getFullYear() == year && (date.getMonth() + 1) == month;
         });
         displaySalesGrowthChart(filteredData);
+    }
+    function BundlingChart(transactions) {
+        const ctx = document.getElementById('bundlingChart').getContext('2d');
+        const categoryBundling = {};
+        transactions.forEach(transaction => {
+            if (!categoryBundling[transaction.product_category]) {
+                categoryBundling[transaction.product_category] = 0;
+            }
+            categoryBundling[transaction.product_category] += transaction.transaction_qty;
+        });
+
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: Object.keys(categoryBundling),
+                datasets: [{
+                    data: Object.values(categoryBundling),
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50', '#8E44AD'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' }
+                }
+            }
+        });
+    }
+
+    function RevenueDistributionChart(transactions) {
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const locations = {};
+        transactions.forEach(transaction => {
+            if (!locations[transaction.store_location]) {
+                locations[transaction.store_location] = 0;
+            }
+            locations[transaction.store_location] += transaction.transaction_value;
+        });
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: Object.keys(locations),
+                datasets: [{
+                    label: 'Revenue ($)',
+                    data: Object.values(locations),
+                    backgroundColor: '#4CAF50',
+                    borderColor: '#388E3C',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     }
 
     document.getElementById("filterGrowthButton").addEventListener("click", filterData);
